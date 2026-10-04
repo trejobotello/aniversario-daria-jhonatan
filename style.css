@@ -10947,3 +10947,508 @@ body.portada-activa {
     }
 
 }
+
+
+/* =========================================================
+   CORRECCIÓN DEFINITIVA - MOMENTOS ESPECIALES
+   TODAS LAS TARJETAS DEL MISMO TAMAÑO
+========================================================= */
+
+#momentos .timeline {
+    position: relative !important;
+
+    width: 100% !important;
+    max-width: 1000px !important;
+
+    margin: 60px auto 0 !important;
+    padding: 20px 0 60px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    gap: 55px !important;
+}
+
+
+/* =========================================================
+   LÍNEA CENTRAL
+========================================================= */
+
+#momentos .timeline-linea {
+    position: absolute !important;
+
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 50% !important;
+
+    width: 2px !important;
+    height: 100% !important;
+
+    transform: translateX(-50%) !important;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(232, 93, 117, 0.35) 8%,
+            rgba(232, 93, 117, 0.35) 92%,
+            transparent
+        ) !important;
+
+    z-index: 0 !important;
+}
+
+
+/* =========================================================
+   CADA FILA
+========================================================= */
+
+#momentos .timeline-item {
+    position: relative !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    min-height: 240px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   POSICIÓN DE LAS TARJETAS
+
+   1 = DERECHA
+   2 = IZQUIERDA
+   3 = DERECHA
+========================================================= */
+
+#momentos .timeline-item:nth-child(2) {
+    justify-content: flex-end !important;
+}
+
+#momentos .timeline-item:nth-child(3) {
+    justify-content: flex-start !important;
+}
+
+#momentos .timeline-item:nth-child(4) {
+    justify-content: flex-end !important;
+}
+
+
+/* =========================================================
+   TODAS LAS TARJETAS
+========================================================= */
+
+#momentos .timeline-card {
+    position: relative !important;
+
+    flex: none !important;
+
+    width: 460px !important;
+    max-width: calc(50% - 65px) !important;
+    min-width: 0 !important;
+
+    min-height: 240px !important;
+
+    margin: 0 !important;
+
+    padding:
+        38px 42px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+
+    box-sizing: border-box !important;
+
+    background:
+        rgba(255, 255, 255, 0.94) !important;
+
+    border:
+        1px solid
+        rgba(232, 93, 117, 0.22) !important;
+
+    border-radius: 30px !important;
+
+    box-shadow:
+        0 18px 50px
+        rgba(133, 71, 85, 0.09) !important;
+
+    overflow: hidden !important;
+
+    text-align: left !important;
+}
+
+
+/* =========================================================
+   PEQUEÑA LÍNEA ROSA SUPERIOR
+========================================================= */
+
+#momentos .timeline-card::before {
+    content: "" !important;
+
+    position: absolute !important;
+
+    top: 0 !important;
+    left: 32px !important;
+
+    width: 55px !important;
+    height: 4px !important;
+
+    border-radius:
+        0 0 5px 5px !important;
+
+    background:
+        #ee6b82 !important;
+}
+
+
+/* =========================================================
+   FECHA / ETIQUETA
+========================================================= */
+
+#momentos .timeline-fecha {
+    display: inline-flex !important;
+
+    width: auto !important;
+    max-width: none !important;
+
+    margin:
+        0 0 22px !important;
+
+    padding:
+        9px 18px !important;
+
+    border-radius:
+        999px !important;
+
+    background:
+        rgba(232, 93, 117, 0.09) !important;
+
+    color:
+        #e85d75 !important;
+
+    font-size:
+        10px !important;
+
+    font-weight:
+        700 !important;
+
+    line-height:
+        1 !important;
+
+    letter-spacing:
+        2px !important;
+
+    white-space:
+        nowrap !important;
+
+    word-break:
+        normal !important;
+}
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+#momentos .timeline-card h3 {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin:
+        0 0 16px !important;
+
+    padding: 0 !important;
+
+    color:
+        #5c4449 !important;
+
+    font-family:
+        "Playfair Display",
+        serif !important;
+
+    font-size:
+        34px !important;
+
+    font-weight:
+        400 !important;
+
+    line-height:
+        1.22 !important;
+
+    letter-spacing:
+        normal !important;
+
+    white-space:
+        normal !important;
+
+    word-break:
+        normal !important;
+
+    overflow-wrap:
+        normal !important;
+}
+
+
+/* =========================================================
+   TEXTO
+========================================================= */
+
+#momentos .timeline-card p {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color:
+        #8a7278 !important;
+
+    font-size:
+        14px !important;
+
+    font-weight:
+        400 !important;
+
+    line-height:
+        1.8 !important;
+
+    letter-spacing:
+        normal !important;
+
+    white-space:
+        normal !important;
+
+    word-break:
+        normal !important;
+
+    overflow-wrap:
+        normal !important;
+}
+
+
+/* =========================================================
+   CORAZÓN CENTRAL
+========================================================= */
+
+#momentos .timeline-punto {
+    position: absolute !important;
+
+    left: 50% !important;
+    top: 50% !important;
+
+    width: 58px !important;
+    height: 58px !important;
+
+    margin: 0 !important;
+
+    transform:
+        translate(-50%, -50%) !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+
+    border:
+        7px solid
+        #ffffff !important;
+
+    border-radius:
+        50% !important;
+
+    background:
+        #ee6b82 !important;
+
+    color:
+        #ffffff !important;
+
+    font-size:
+        16px !important;
+
+    z-index:
+        10 !important;
+
+    box-shadow:
+        0 0 0 8px
+        rgba(238, 107, 130, 0.10),
+        0 12px 30px
+        rgba(181, 74, 95, 0.18) !important;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 850px) {
+
+    #momentos .timeline {
+        max-width:
+            650px !important;
+
+        padding:
+            20px 15px 50px 65px !important;
+
+        gap:
+            35px !important;
+    }
+
+
+    #momentos .timeline-linea {
+        left:
+            35px !important;
+
+        transform:
+            none !important;
+    }
+
+
+    #momentos .timeline-item,
+    #momentos .timeline-item:nth-child(2),
+    #momentos .timeline-item:nth-child(3),
+    #momentos .timeline-item:nth-child(4) {
+
+        width:
+            100% !important;
+
+        min-height:
+            auto !important;
+
+        display:
+            block !important;
+
+        justify-content:
+            initial !important;
+    }
+
+
+    #momentos .timeline-card {
+        width:
+            100% !important;
+
+        max-width:
+            none !important;
+
+        min-height:
+            220px !important;
+
+        padding:
+            35px !important;
+    }
+
+
+    #momentos .timeline-punto {
+        left:
+            -30px !important;
+
+        top:
+            50% !important;
+
+        width:
+            50px !important;
+
+        height:
+            50px !important;
+
+        transform:
+            translate(-50%, -50%) !important;
+    }
+
+}
+
+
+/* =========================================================
+   CELULAR
+========================================================= */
+
+@media (max-width: 550px) {
+
+    #momentos .timeline {
+        width:
+            100% !important;
+
+        padding:
+            15px 8px 40px 52px !important;
+
+        gap:
+            28px !important;
+    }
+
+
+    #momentos .timeline-linea {
+        left:
+            25px !important;
+    }
+
+
+    #momentos .timeline-card {
+        width:
+            100% !important;
+
+        max-width:
+            none !important;
+
+        min-height:
+            auto !important;
+
+        padding:
+            30px 25px !important;
+
+        border-radius:
+            24px !important;
+    }
+
+
+    #momentos .timeline-card h3 {
+        font-size:
+            27px !important;
+    }
+
+
+    #momentos .timeline-card p {
+        font-size:
+            13px !important;
+    }
+
+
+    #momentos .timeline-punto {
+        left:
+            -27px !important;
+
+        width:
+            44px !important;
+
+        height:
+            44px !important;
+
+        border-width:
+            5px !important;
+
+        font-size:
+            13px !important;
+    }
+
+
+    #momentos .timeline-fecha {
+        font-size:
+            8px !important;
+
+        letter-spacing:
+            1.5px !important;
+    }
+
+}
