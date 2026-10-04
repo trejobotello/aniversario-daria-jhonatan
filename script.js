@@ -1530,7 +1530,7 @@ const recuerdos = [
             "Donde comenzó una historia que todavía seguimos escribiendo.",
 
         imagen:
-            "img/foto1.jpg"
+            "foto1.jpg.jpeg"
     },
 
     {
@@ -1544,7 +1544,7 @@ const recuerdos = [
             "Uno de esos días que merece quedarse guardado.",
 
         imagen:
-            "img/foto2.jpg"
+            "foto2.jpg.jpeg"
     },
 
     {
@@ -1558,7 +1558,7 @@ const recuerdos = [
             "Porque algunas sonrisas dicen mucho sin decir nada.",
 
         imagen:
-            "img/foto3.jpg"
+            "foto3.jpg.jpeg"
     },
 
     {
@@ -1572,7 +1572,7 @@ const recuerdos = [
             "Un momento que siempre tendrá un lugar especial.",
 
         imagen:
-            "img/foto4.jpg"
+            "foto4.jpg.jpeg"
     }
 
 ];
