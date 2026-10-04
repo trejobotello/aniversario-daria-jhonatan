@@ -11736,3 +11736,149 @@ body.portada-activa {
     }
 
 }
+
+/* =========================================================
+   MOMENTOS — CORRECCIÓN ÚNICA FINAL
+========================================================= */
+
+@media (min-width: 901px) {
+    #momentos .timeline {
+        position: relative !important;
+        display: block !important;
+        width: min(1000px, calc(100% - 40px)) !important;
+        max-width: 1000px !important;
+        margin: 60px auto 0 !important;
+        padding: 20px 0 60px !important;
+    }
+
+    #momentos .timeline-linea {
+        position: absolute !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 50% !important;
+        width: 2px !important;
+        height: auto !important;
+        transform: translateX(-50%) !important;
+    }
+
+    #momentos .timeline-item,
+    #momentos .timeline-item:nth-of-type(odd),
+    #momentos .timeline-item:nth-of-type(even) {
+        position: relative !important;
+        display: flex !important;
+        align-items: center !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 260px !important;
+        margin: 0 0 45px !important;
+        padding: 0 !important;
+    }
+
+    #momentos .timeline-item:nth-of-type(odd) {
+        justify-content: flex-end !important;
+    }
+
+    #momentos .timeline-item:nth-of-type(even) {
+        justify-content: flex-start !important;
+    }
+
+    #momentos .timeline-card,
+    #momentos .timeline-item:nth-of-type(odd) .timeline-card,
+    #momentos .timeline-item:nth-of-type(even) .timeline-card {
+        flex: 0 0 420px !important;
+        width: 420px !important;
+        min-width: 420px !important;
+        max-width: 420px !important;
+        min-height: 220px !important;
+        margin: 0 !important;
+        padding: 35px !important;
+        box-sizing: border-box !important;
+    }
+
+    #momentos .timeline-card h3,
+    #momentos .timeline-card p {
+        width: 100% !important;
+        max-width: none !important;
+        white-space: normal !important;
+        word-break: normal !important;
+        overflow-wrap: normal !important;
+    }
+
+    #momentos .timeline-fecha {
+        width: auto !important;
+        max-width: 100% !important;
+        white-space: normal !important;
+    }
+
+    #momentos .timeline-punto,
+    #momentos .timeline-item:nth-of-type(odd) .timeline-punto,
+    #momentos .timeline-item:nth-of-type(even) .timeline-punto {
+        position: absolute !important;
+        top: 50% !important;
+        left: 50% !important;
+        right: auto !important;
+        width: 54px !important;
+        height: 54px !important;
+        margin: 0 !important;
+        transform: translate(-50%, -50%) !important;
+    }
+}
+
+@media (max-width: 900px) {
+    #momentos .timeline {
+        position: relative !important;
+        display: block !important;
+        width: min(680px, calc(100% - 30px)) !important;
+        margin: 45px auto 0 !important;
+        padding: 10px 0 30px 65px !important;
+    }
+
+    #momentos .timeline-linea {
+        position: absolute !important;
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 30px !important;
+        width: 2px !important;
+        transform: none !important;
+    }
+
+    #momentos .timeline-item,
+    #momentos .timeline-item:nth-of-type(odd),
+    #momentos .timeline-item:nth-of-type(even) {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: auto !important;
+        margin: 0 0 30px !important;
+        padding: 0 !important;
+    }
+
+    #momentos .timeline-card,
+    #momentos .timeline-item:nth-of-type(odd) .timeline-card,
+    #momentos .timeline-item:nth-of-type(even) .timeline-card {
+        display: block !important;
+        flex: none !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        min-height: auto !important;
+        margin: 0 !important;
+        padding: 30px 27px !important;
+        box-sizing: border-box !important;
+    }
+
+    #momentos .timeline-punto,
+    #momentos .timeline-item:nth-of-type(odd) .timeline-punto,
+    #momentos .timeline-item:nth-of-type(even) .timeline-punto {
+        position: absolute !important;
+        top: 50% !important;
+        left: -35px !important;
+        right: auto !important;
+        width: 46px !important;
+        height: 46px !important;
+        margin: 0 !important;
+        transform: translate(-50%, -50%) !important;
+    }
+}
+
