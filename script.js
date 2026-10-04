@@ -1,9 +1,16 @@
 /* =========================================================
-   =========================================================
    DARÍA ❤️ JHONATAN
    SCRIPT.JS
-   =========================================================
-   ========================================================= */
+   Funciones:
+   - Contador
+   - Menú móvil
+   - Navegación
+   - Música
+   - Carta
+   - Sorpresa
+   - Corazones
+   - Animaciones
+========================================================= */
 
 "use strict";
 
@@ -18,246 +25,133 @@ const CONFIG = {
 
     persona2: "Jhonatan",
 
-    /*
-        Fecha de inicio:
-        04 de enero de 2026
-    */
+    // 04 de enero de 2026
+    fechaInicio: new Date(2026, 0, 4, 0, 0, 0),
 
-    fechaInicio:
-        new Date(
-            2026,
-            0,
-            4,
-            0,
-            0,
-            0
-        ),
+    volumenMusica: 0.45,
 
-    /*
-        Volumen máximo de la música.
-    */
-
-    volumenMusica:
-        0.45,
-
-    /*
-        Corazones flotantes.
-    */
-
-    corazonesActivos:
-        true
+    corazonesActivos: true
 
 };
 
 
+
 /* =========================================================
-   2. ELEMENTOS PRINCIPALES DEL HTML
+   2. ELEMENTOS DEL HTML
 ========================================================= */
-
-
-/* HEADER */
 
 const header =
-    document.getElementById(
-        "header"
-    );
-
-
-/* MENÚ */
+    document.getElementById("header");
 
 const menuToggle =
-    document.getElementById(
-        "menu-toggle"
-    );
-
+    document.getElementById("menu-toggle");
 
 const navMenu =
-    document.getElementById(
-        "nav-menu"
-    );
-
+    document.getElementById("nav-menu");
 
 const navLinks =
-    document.querySelectorAll(
-        ".nav-link"
-    );
+    document.querySelectorAll(".nav-link");
 
 
-/* =========================================================
-   3. ELEMENTOS DE MÚSICA
-========================================================= */
+/* Música */
 
 const musica =
-    document.getElementById(
-        "musica"
-    );
-
+    document.getElementById("musica");
 
 const btnMusica =
-    document.getElementById(
-        "btn-musica"
-    );
-
+    document.getElementById("btn-musica");
 
 const btnHistoria =
-    document.getElementById(
-        "btn-historia"
-    );
-
+    document.getElementById("btn-historia");
 
 const iconoMusica =
-    document.getElementById(
-        "icono-musica"
-    );
-
+    document.getElementById("icono-musica");
 
 const textoMusica =
-    document.getElementById(
-        "texto-musica"
-    );
+    document.getElementById("texto-musica");
 
 
-/* =========================================================
-   4. ELEMENTOS DE LA CARTA
-========================================================= */
+/* Carta */
 
 const sobre =
-    document.getElementById(
-        "sobre"
-    );
-
+    document.getElementById("sobre");
 
 const abrirCarta =
-    document.getElementById(
-        "abrir-carta"
-    );
-
+    document.getElementById("abrir-carta");
 
 const papelCarta =
-    document.getElementById(
-        "papel-carta"
-    );
+    document.getElementById("papel-carta");
 
 
-/* =========================================================
-   5. ELEMENTOS DE LA SORPRESA
-========================================================= */
+/* Sorpresa */
 
 const btnSorpresa =
-    document.getElementById(
-        "btn-sorpresa"
-    );
-
+    document.getElementById("btn-sorpresa");
 
 const sorpresaOculta =
-    document.getElementById(
-        "sorpresa-oculta"
-    );
+    document.getElementById("sorpresa-oculta");
 
 
-/* =========================================================
-   6. CONTENEDOR DE CORAZONES
-========================================================= */
+/* Corazones */
 
 const contenedorCorazones =
-    document.getElementById(
-        "corazones-flotantes"
-    );
+    document.getElementById("corazones-flotantes");
 
 
-/* =========================================================
-   7. ELEMENTOS DEL CONTADOR
-========================================================= */
+/* Contador */
 
 const elementoAnios =
-    document.getElementById(
-        "anios"
-    );
-
+    document.getElementById("anios");
 
 const elementoMeses =
-    document.getElementById(
-        "meses"
-    );
-
+    document.getElementById("meses");
 
 const elementoDias =
-    document.getElementById(
-        "dias"
-    );
-
+    document.getElementById("dias");
 
 const elementoHoras =
-    document.getElementById(
-        "horas"
-    );
-
+    document.getElementById("horas");
 
 const elementoMinutos =
-    document.getElementById(
-        "minutos"
-    );
-
+    document.getElementById("minutos");
 
 const elementoSegundos =
-    document.getElementById(
-        "segundos"
-    );
+    document.getElementById("segundos");
+
 
 
 /* =========================================================
-   8. FUNCIÓN AUXILIAR — DOS DÍGITOS
+   3. FUNCIÓN AUXILIAR
 ========================================================= */
 
 function dosDigitos(numero) {
 
-    return String(
-        numero
-    ).padStart(
-        2,
-        "0"
-    );
+    return String(numero).padStart(2, "0");
 
 }
 
 
+
 /* =========================================================
-   9. CALCULAR TIEMPO JUNTOS
+   4. CALCULAR TIEMPO JUNTOS
 ========================================================= */
 
-function calcularTiempo(
-    inicio,
-    ahora
-) {
+function calcularTiempo(inicio, ahora) {
 
     /*
-        Primero calculamos los años
-        completos transcurridos.
+        Primero calculamos años y meses completos.
+        Después calculamos los días y horas restantes.
     */
 
     let anios =
-        ahora.getFullYear() -
-        inicio.getFullYear();
-
-
-    /*
-        Después calculamos los meses.
-    */
+        ahora.getFullYear() - inicio.getFullYear();
 
     let meses =
-        ahora.getMonth() -
-        inicio.getMonth();
+        ahora.getMonth() - inicio.getMonth();
 
-
-    /*
-        Si todavía no hemos llegado
-        al día correspondiente del mes,
-        restamos un mes.
-    */
 
     if (
-        ahora.getDate() <
-        inicio.getDate()
+        ahora.getDate() < inicio.getDate()
     ) {
 
         meses--;
@@ -265,14 +159,7 @@ function calcularTiempo(
     }
 
 
-    /*
-        Corregimos cuando los meses
-        quedan en negativo.
-    */
-
-    if (
-        meses < 0
-    ) {
+    if (meses < 0) {
 
         anios--;
 
@@ -282,133 +169,65 @@ function calcularTiempo(
 
 
     /*
-        Creamos una fecha base con
+        Creamos una fecha base sumando
         los años y meses completos.
     */
 
     const fechaBase =
         new Date(
-
-            inicio.getFullYear() +
-            anios,
-
-            inicio.getMonth() +
-            meses,
-
+            inicio.getFullYear() + anios,
+            inicio.getMonth() + meses,
             inicio.getDate(),
-
             inicio.getHours(),
-
             inicio.getMinutes(),
-
             inicio.getSeconds()
-
         );
 
 
-    /*
-        Calculamos el tiempo restante.
-    */
-
     let diferencia =
-        ahora.getTime() -
-        fechaBase.getTime();
+        ahora.getTime() - fechaBase.getTime();
 
 
-    /*
-        Protección por si la fecha
-        todavía no ha llegado.
-    */
-
-    if (
-        diferencia < 0
-    ) {
+    if (diferencia < 0) {
 
         diferencia = 0;
 
     }
 
 
-    /*
-        Convertimos a segundos.
-    */
-
     const segundosTotales =
-        Math.floor(
-            diferencia / 1000
-        );
+        Math.floor(diferencia / 1000);
 
-
-    /*
-        DÍAS
-    */
 
     const dias =
         Math.floor(
-            segundosTotales /
-            86400
+            segundosTotales / 86400
         );
 
-
-    /*
-        HORAS
-    */
 
     const horas =
         Math.floor(
-
-            (
-                segundosTotales %
-                86400
-            ) /
-
-            3600
-
+            (segundosTotales % 86400) / 3600
         );
 
-
-    /*
-        MINUTOS
-    */
 
     const minutos =
         Math.floor(
-
-            (
-                segundosTotales %
-                3600
-            ) /
-
-            60
-
+            (segundosTotales % 3600) / 60
         );
 
 
-    /*
-        SEGUNDOS
-    */
-
     const segundos =
-        segundosTotales %
-        60;
+        segundosTotales % 60;
 
-
-    /*
-        Devolvemos todos los valores.
-    */
 
     return {
 
         anios,
-
         meses,
-
         dias,
-
         horas,
-
         minutos,
-
         segundos
 
     };
@@ -416,46 +235,23 @@ function calcularTiempo(
 }
 
 
+
 /* =========================================================
-   10. ACTUALIZAR CONTADOR
+   5. ACTUALIZAR CONTADOR
 ========================================================= */
 
 function actualizarContador() {
-
-    /*
-        Si alguno de los elementos
-        principales no existe,
-        evitamos errores.
-    */
-
-    if (
-        !elementoAnios ||
-        !elementoMeses ||
-        !elementoDias ||
-        !elementoHoras ||
-        !elementoMinutos ||
-        !elementoSegundos
-    ) {
-
-        return;
-
-    }
-
 
     const ahora =
         new Date();
 
 
     /*
-        Si todavía no ha llegado
-        la fecha de inicio,
-        mostramos todo en 00.
+        Si todavía no llegó la fecha
+        de inicio mostramos 00.
     */
 
-    if (
-        ahora <
-        CONFIG.fechaInicio
-    ) {
+    if (ahora < CONFIG.fechaInicio) {
 
         elementoAnios.textContent =
             "00";
@@ -480,106 +276,54 @@ function actualizarContador() {
     }
 
 
-    /*
-        Calculamos el tiempo.
-    */
-
     const tiempo =
         calcularTiempo(
-
             CONFIG.fechaInicio,
-
             ahora
-
         );
 
-
-    /*
-        Mostramos los valores.
-    */
 
     elementoAnios.textContent =
-        dosDigitos(
-            tiempo.anios
-        );
-
+        dosDigitos(tiempo.anios);
 
     elementoMeses.textContent =
-        dosDigitos(
-            tiempo.meses
-        );
-
+        dosDigitos(tiempo.meses);
 
     elementoDias.textContent =
-        dosDigitos(
-            tiempo.dias
-        );
-
+        dosDigitos(tiempo.dias);
 
     elementoHoras.textContent =
-        dosDigitos(
-            tiempo.horas
-        );
-
+        dosDigitos(tiempo.horas);
 
     elementoMinutos.textContent =
-        dosDigitos(
-            tiempo.minutos
-        );
-
+        dosDigitos(tiempo.minutos);
 
     elementoSegundos.textContent =
-        dosDigitos(
-            tiempo.segundos
-        );
+        dosDigitos(tiempo.segundos);
 
 }
 
 
-/* =========================================================
-   11. INICIAR CONTADOR
-========================================================= */
+
+/* Iniciar contador */
 
 actualizarContador();
 
 
 setInterval(
-
     actualizarContador,
-
     1000
-
 );
 
 
+
 /* =========================================================
-   12. HEADER AL HACER SCROLL
+   6. HEADER AL HACER SCROLL
 ========================================================= */
 
 function controlarHeader() {
 
-    /*
-        Si no existe el header,
-        no hacemos nada.
-    */
-
-    if (
-        !header
-    ) {
-
-        return;
-
-    }
-
-
-    /*
-        Agregamos una clase cuando
-        bajamos por la página.
-    */
-
-    if (
-        window.scrollY > 30
-    ) {
+    if (window.scrollY > 30) {
 
         header.classList.add(
             "scrolled"
@@ -596,56 +340,36 @@ function controlarHeader() {
 }
 
 
-/* Ejecutar al cargar */
-
 controlarHeader();
 
 
-/* Ejecutar al desplazarse */
-
 window.addEventListener(
-
     "scroll",
-
     controlarHeader,
-
     {
         passive: true
     }
-
 );
 
 
+
 /* =========================================================
-   13. ABRIR MENÚ MÓVIL
+   7. MENÚ PARA CELULAR
 ========================================================= */
 
 function abrirMenu() {
-
-    if (
-        !navMenu ||
-        !menuToggle
-    ) {
-
-        return;
-
-    }
-
 
     navMenu.classList.add(
         "abierto"
     );
 
-
     menuToggle.classList.add(
         "activo"
     );
 
-
     document.body.classList.add(
         "menu-abierto"
     );
-
 
     menuToggle.setAttribute(
         "aria-expanded",
@@ -655,36 +379,19 @@ function abrirMenu() {
 }
 
 
-/* =========================================================
-   14. CERRAR MENÚ MÓVIL
-========================================================= */
-
 function cerrarMenu() {
-
-    if (
-        !navMenu ||
-        !menuToggle
-    ) {
-
-        return;
-
-    }
-
 
     navMenu.classList.remove(
         "abierto"
     );
 
-
     menuToggle.classList.remove(
         "activo"
     );
 
-
     document.body.classList.remove(
         "menu-abierto"
     );
-
 
     menuToggle.setAttribute(
         "aria-expanded",
@@ -694,20 +401,7 @@ function cerrarMenu() {
 }
 
 
-/* =========================================================
-   15. ALTERNAR MENÚ
-========================================================= */
-
 function alternarMenu() {
-
-    if (
-        !navMenu
-    ) {
-
-        return;
-
-    }
-
 
     const abierto =
         navMenu.classList.contains(
@@ -715,9 +409,7 @@ function alternarMenu() {
         );
 
 
-    if (
-        abierto
-    ) {
+    if (abierto) {
 
         cerrarMenu();
 
@@ -730,59 +422,40 @@ function alternarMenu() {
 }
 
 
-/* =========================================================
-   16. BOTÓN DEL MENÚ
-========================================================= */
-
-if (
-    menuToggle
-) {
+if (menuToggle) {
 
     menuToggle.addEventListener(
-
         "click",
-
         alternarMenu
-
     );
 
 }
 
 
-/* =========================================================
-   17. CERRAR MENÚ AL PULSAR UN ENLACE
-========================================================= */
+
+/* Cerrar menú al pulsar enlace */
 
 navLinks.forEach(
-
     (link) => {
 
         link.addEventListener(
-
             "click",
-
             cerrarMenu
-
         );
 
     }
-
 );
 
 
-/* =========================================================
-   18. CERRAR MENÚ CON ESC
-========================================================= */
+
+/* Cerrar con ESC */
 
 document.addEventListener(
-
     "keydown",
-
     (evento) => {
 
         if (
-            evento.key ===
-            "Escape"
+            evento.key === "Escape"
         ) {
 
             cerrarMenu();
@@ -790,12 +463,12 @@ document.addEventListener(
         }
 
     }
-
 );
 
 
+
 /* =========================================================
-   19. SECCIONES DE LA PÁGINA
+   8. NAVEGACIÓN ACTIVA
 ========================================================= */
 
 const secciones =
@@ -804,37 +477,21 @@ const secciones =
     );
 
 
-/* =========================================================
-   20. ACTUALIZAR NAVEGACIÓN ACTIVA
-========================================================= */
-
 function actualizarNavegacion() {
-
-    /*
-        Por defecto consideramos
-        Inicio como sección activa.
-    */
 
     let seccionActual =
         "inicio";
 
 
-    /*
-        Recorremos las secciones.
-    */
-
     secciones.forEach(
-
         (seccion) => {
 
             const posicion =
-                seccion.offsetTop -
-                150;
+                seccion.offsetTop - 150;
 
 
             if (
-                window.scrollY >=
-                posicion
+                window.scrollY >= posicion
             ) {
 
                 seccionActual =
@@ -843,17 +500,10 @@ function actualizarNavegacion() {
             }
 
         }
-
     );
 
 
-    /*
-        Quitamos el estado activo
-        de todos los enlaces.
-    */
-
     navLinks.forEach(
-
         (link) => {
 
             link.classList.remove(
@@ -861,15 +511,8 @@ function actualizarNavegacion() {
             );
 
 
-            /*
-                Activamos solamente
-                el enlace correspondiente.
-            */
-
             if (
-                link.getAttribute(
-                    "href"
-                ) ===
+                link.getAttribute("href") ===
                 `#${seccionActual}`
             ) {
 
@@ -880,179 +523,93 @@ function actualizarNavegacion() {
             }
 
         }
-
     );
 
 }
 
 
-/* =========================================================
-   21. DETECTAR SCROLL PARA LA NAVEGACIÓN
-========================================================= */
-
 window.addEventListener(
-
     "scroll",
-
     actualizarNavegacion,
-
     {
         passive: true
     }
-
 );
 
-
-/* Ejecutar inicialmente */
 
 actualizarNavegacion();
 
 
+
 /* =========================================================
-   22. AJUSTAR MENÚ AL CAMBIAR TAMAÑO
+   9. MÚSICA
 ========================================================= */
 
-window.addEventListener(
+/*
+    Esta es la única parte del proyecto
+    que controla la música.
+*/
 
-    "resize",
+let musicaReproduciendo =
+    false;
 
-    () => {
-
-        if (
-            window.innerWidth >
-            850
-        ) {
-
-            cerrarMenu();
-
-        }
-
-    }
-
-);
+let intervaloVolumen =
+    null;
 
 
-/* =========================================================
-   FIN PARTE 1
-========================================================= */
-
-
-/* =========================================================
-   =========================================================
-   PARTE 2
-   SISTEMA DE MÚSICA
-   =========================================================
-   ========================================================= */
-
-
-/* =========================================================
-   23. ESTADO DE LA MÚSICA
-========================================================= */
-
-let musicaIniciada = false;
-
-let intervaloVolumen = null;
-
-
-/* =========================================================
-   24. ACTUALIZAR BOTÓN DE MÚSICA
-========================================================= */
+/*
+    Actualizar visualmente el botón.
+*/
 
 function actualizarBotonMusica() {
 
-    /*
-        Si no existe el audio,
-        evitamos errores.
-    */
-
-    if (!musica) {
+    if (!btnMusica) {
 
         return;
 
     }
 
 
-    /*
-        MÚSICA REPRODUCIÉNDOSE
-    */
+    if (musicaReproduciendo) {
 
-    if (!musica.paused) {
+        btnMusica.classList.add(
+            "reproduciendo"
+        );
 
-        if (iconoMusica) {
+        iconoMusica.textContent =
+            "❚❚";
 
-            iconoMusica.textContent = "❚❚";
+        textoMusica.textContent =
+            "Pausar música";
 
-        }
+    } else {
 
+        btnMusica.classList.remove(
+            "reproduciendo"
+        );
 
-        if (textoMusica) {
+        iconoMusica.textContent =
+            "♪";
 
-            textoMusica.textContent = "Pausar música";
-
-        }
-
-
-        if (btnMusica) {
-
-            btnMusica.classList.add(
-                "reproduciendo"
-            );
-
-
-            btnMusica.setAttribute(
-                "aria-label",
-                "Pausar música"
-            );
-
-        }
-
-    }
-
-
-    /*
-        MÚSICA PAUSADA
-    */
-
-    else {
-
-        if (iconoMusica) {
-
-            iconoMusica.textContent = "♫";
-
-        }
-
-
-        if (textoMusica) {
-
-            textoMusica.textContent = "Música";
-
-        }
-
-
-        if (btnMusica) {
-
-            btnMusica.classList.remove(
-                "reproduciendo"
-            );
-
-
-            btnMusica.setAttribute(
-                "aria-label",
-                "Reproducir música"
-            );
-
-        }
+        textoMusica.textContent =
+            "Reproducir música";
 
     }
 
 }
 
 
+
 /* =========================================================
-   25. DETENER SUBIDA DE VOLUMEN
+   10. SUBIR VOLUMEN SUAVEMENTE
 ========================================================= */
 
-function detenerSubidaVolumen() {
+function aumentarVolumenSuavemente() {
+
+    /*
+        Cancelamos cualquier transición
+        anterior de volumen.
+    */
 
     if (intervaloVolumen) {
 
@@ -1060,146 +617,66 @@ function detenerSubidaVolumen() {
             intervaloVolumen
         );
 
-
-        intervaloVolumen = null;
-
-    }
-
-}
-
-
-/* =========================================================
-   26. SUBIR VOLUMEN SUAVEMENTE
-========================================================= */
-
-function subirVolumenSuavemente() {
-
-    if (!musica) {
-
-        return;
-
     }
 
 
-    /*
-        Detenemos cualquier transición
-        anterior para evitar duplicados.
-    */
+    musica.volume =
+        0.05;
 
-    detenerSubidaVolumen();
-
-
-    /*
-        Comenzamos con volumen bajo.
-    */
-
-    musica.volume = 0;
-
-
-    /*
-        Cantidad que aumentará
-        en cada paso.
-    */
-
-    const incremento = 0.025;
-
-
-    /*
-        Cada 70 ms aumentamos
-        ligeramente el volumen.
-    */
 
     intervaloVolumen =
         setInterval(
-
             () => {
 
-                /*
-                    Si la música se pausó,
-                    detenemos el efecto.
-                */
+                let nuevoVolumen =
+                    musica.volume + 0.03;
 
-                if (musica.paused) {
-
-                    detenerSubidaVolumen();
-
-                    return;
-
-                }
-
-
-                /*
-                    Calculamos el siguiente
-                    nivel de volumen.
-                */
-
-                const siguienteVolumen =
-                    Math.min(
-
-                        musica.volume +
-                        incremento,
-
-                        CONFIG.volumenMusica
-
-                    );
-
-
-                musica.volume =
-                    siguienteVolumen;
-
-
-                /*
-                    Cuando llegamos al volumen
-                    configurado, terminamos.
-                */
 
                 if (
-                    siguienteVolumen >=
+                    nuevoVolumen >=
                     CONFIG.volumenMusica
                 ) {
 
-                    musica.volume =
+                    nuevoVolumen =
                         CONFIG.volumenMusica;
 
+                    clearInterval(
+                        intervaloVolumen
+                    );
 
-                    detenerSubidaVolumen();
+                    intervaloVolumen =
+                        null;
 
                 }
 
+
+                musica.volume =
+                    Math.min(
+                        nuevoVolumen,
+                        1
+                    );
+
             },
-
-            70
-
+            120
         );
 
 }
 
 
+
 /* =========================================================
-   27. REPRODUCIR MÚSICA
+   11. REPRODUCIR MÚSICA
 ========================================================= */
 
-async function reproducirMusica(
-    usarFade = true
-) {
+async function reproducirMusica() {
 
     if (!musica) {
 
+        console.error(
+            "No se encontró el elemento de audio."
+        );
+
         return false;
-
-    }
-
-
-    /*
-        Si ya está reproduciéndose,
-        no hacemos nada.
-    */
-
-    if (!musica.paused) {
-
-        actualizarBotonMusica();
-
-        return true;
 
     }
 
@@ -1207,44 +684,35 @@ async function reproducirMusica(
     try {
 
         /*
-            Si queremos entrada suave,
-            comenzamos desde volumen 0.
+            Empezamos bajito.
         */
 
-        if (usarFade) {
-
-            musica.volume = 0;
-
-        } else {
-
-            musica.volume =
-                CONFIG.volumenMusica;
-
-        }
+        musica.volume =
+            0.05;
 
 
         /*
-            Intentamos reproducir.
+            play() ocurre directamente
+            después de la interacción
+            del usuario.
         */
 
         await musica.play();
 
 
-        musicaIniciada = true;
-
-
-        /*
-            Aplicamos subida gradual.
-        */
-
-        if (usarFade) {
-
-            subirVolumenSuavemente();
-
-        }
+        musicaReproduciendo =
+            true;
 
 
         actualizarBotonMusica();
+
+
+        aumentarVolumenSuavemente();
+
+
+        console.log(
+            "🎵 Música reproduciéndose correctamente."
+        );
 
 
         return true;
@@ -1253,21 +721,35 @@ async function reproducirMusica(
 
     catch (error) {
 
-        /*
-            Los navegadores pueden bloquear
-            la reproducción automática.
+        musicaReproduciendo =
+            false;
 
-            No es un problema si ocurre antes
-            de que el usuario pulse un botón.
-        */
 
-        console.warn(
-            "La música necesita una interacción del usuario para comenzar.",
+        actualizarBotonMusica();
+
+
+        console.error(
+            "❌ No se pudo reproducir la música:",
             error
         );
 
 
-        actualizarBotonMusica();
+        /*
+            Mostramos temporalmente
+            un mensaje en el botón.
+        */
+
+        if (textoMusica) {
+
+            textoMusica.textContent =
+                "No se pudo reproducir";
+
+            setTimeout(
+                actualizarBotonMusica,
+                2500
+            );
+
+        }
 
 
         return false;
@@ -1277,8 +759,9 @@ async function reproducirMusica(
 }
 
 
+
 /* =========================================================
-   28. PAUSAR MÚSICA
+   12. PAUSAR MÚSICA
 ========================================================= */
 
 function pausarMusica() {
@@ -1290,10 +773,23 @@ function pausarMusica() {
     }
 
 
-    detenerSubidaVolumen();
-
-
     musica.pause();
+
+
+    musicaReproduciendo =
+        false;
+
+
+    if (intervaloVolumen) {
+
+        clearInterval(
+            intervaloVolumen
+        );
+
+        intervaloVolumen =
+            null;
+
+    }
 
 
     actualizarBotonMusica();
@@ -1301,83 +797,50 @@ function pausarMusica() {
 }
 
 
-/* =========================================================
-   29. ALTERNAR MÚSICA
-========================================================= */
-
-async function alternarMusica() {
-
-    if (!musica) {
-
-        return;
-
-    }
-
-
-    /*
-        Si está pausada,
-        la reproducimos.
-    */
-
-    if (musica.paused) {
-
-        await reproducirMusica(
-            true
-        );
-
-    }
-
-
-    /*
-        Si está sonando,
-        la pausamos.
-    */
-
-    else {
-
-        pausarMusica();
-
-    }
-
-}
-
 
 /* =========================================================
-   30. BOTÓN DE MÚSICA DEL HEADER
+   13. BOTÓN DE MÚSICA
 ========================================================= */
 
 if (btnMusica) {
 
     btnMusica.addEventListener(
-
         "click",
-
         async () => {
 
-            await alternarMusica();
+            if (
+                musica.paused
+            ) {
+
+                await reproducirMusica();
+
+            } else {
+
+                pausarMusica();
+
+            }
 
         }
-
     );
 
 }
 
 
+
 /* =========================================================
-   31. BOTÓN "VER NUESTRA HISTORIA"
+   14. BOTÓN "NUESTRA HISTORIA"
 ========================================================= */
 
 if (btnHistoria) {
 
     btnHistoria.addEventListener(
-
         "click",
-
         async () => {
 
             /*
-                Iniciamos la música solamente
-                si todavía está pausada.
+                Al hacer clic en
+                "Nuestra historia",
+                iniciamos la música.
             */
 
             if (
@@ -1385,787 +848,639 @@ if (btnHistoria) {
                 musica.paused
             ) {
 
-                await reproducirMusica(
-                    true
-                );
-
-            }
-
-
-            /*
-                Buscamos la sección Historia.
-            */
-
-            const historia =
-                document.getElementById(
-                    "historia"
-                );
-
-
-            /*
-                Nos desplazamos suavemente.
-            */
-
-            if (historia) {
-
-                historia.scrollIntoView({
-
-                    behavior: "smooth",
-
-                    block: "start"
-
-                });
+                await reproducirMusica();
 
             }
 
         }
-
     );
 
 }
 
 
+
 /* =========================================================
-   32. EVENTO PLAY
+   15. DETECTAR SI LA MÚSICA TERMINA O SE PAUSA
 ========================================================= */
 
 if (musica) {
 
     musica.addEventListener(
-
-        "play",
-
-        () => {
-
-            musicaIniciada = true;
-
-            actualizarBotonMusica();
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   33. EVENTO PAUSE
-========================================================= */
-
-if (musica) {
-
-    musica.addEventListener(
-
         "pause",
-
         () => {
 
-            detenerSubidaVolumen();
+            musicaReproduciendo =
+                false;
 
             actualizarBotonMusica();
 
         }
-
     );
 
-}
-
-
-/* =========================================================
-   34. EVENTO ENDED
-========================================================= */
-
-if (musica) {
 
     musica.addEventListener(
-
-        "ended",
-
+        "play",
         () => {
 
-            musicaIniciada = false;
-
-            detenerSubidaVolumen();
+            musicaReproduciendo =
+                true;
 
             actualizarBotonMusica();
 
         }
-
     );
 
-}
-
-
-/* =========================================================
-   35. CONFIGURACIÓN INICIAL DEL AUDIO
-========================================================= */
-
-if (musica) {
 
     /*
-        Dejamos preparado el volumen
-        máximo de la página.
+        Nos ayuda a detectar problemas
+        con el archivo MP3.
     */
-
-    musica.volume =
-        CONFIG.volumenMusica;
-
-
-    /*
-        Como el HTML ya tiene "loop",
-        esta propiedad sirve como
-        protección adicional.
-    */
-
-    musica.loop = true;
-
-
-    /*
-        Sincronizamos el botón
-        al cargar la página.
-    */
-
-    actualizarBotonMusica();
-
-}
-
-
-/* =========================================================
-   36. PROTECCIÓN DE ERRORES DEL AUDIO
-========================================================= */
-
-if (musica) {
 
     musica.addEventListener(
-
         "error",
-
         () => {
 
-            console.warn(
-                "No se pudo cargar el archivo de música."
+            console.error(
+                "❌ Error cargando music/cancion.mp3"
             );
 
 
             if (textoMusica) {
 
                 textoMusica.textContent =
-                    "Música no disponible";
+                    "Error en la canción";
 
             }
 
         }
-
-    );
-
-}
-
-
-/* =========================================================
-   FIN PARTE 2
-========================================================= */
-
-
-/* =========================================================
-   =========================================================
-   PARTE 3
-   CARTA + SORPRESA
-   =========================================================
-   ========================================================= */
-
-
-/* =========================================================
-   37. ESTADO DE LA CARTA
-========================================================= */
-
-let cartaAbierta = false;
-
-
-/* =========================================================
-   38. ABRIR LA CARTA
-========================================================= */
-
-function abrirLaCarta() {
-
-    /*
-        Si no existe el sobre,
-        evitamos errores.
-    */
-
-    if (!sobre) {
-
-        return;
-
-    }
-
-
-    /*
-        Marcamos la carta como abierta.
-    */
-
-    cartaAbierta = true;
-
-
-    /*
-        Estas clases son compatibles
-        con el CSS que acabamos de crear.
-    */
-
-    sobre.classList.add(
-        "abierto"
     );
 
 
-    sobre.classList.add(
-        "activo"
-    );
-
-
-    /*
-        Si existe el papel de la carta,
-        también lo activamos.
-    */
-
-    if (papelCarta) {
-
-        papelCarta.classList.add(
-            "abierto"
-        );
-
-
-        papelCarta.classList.add(
-            "activo"
-        );
-
-    }
-
-
-    /*
-        Buscamos una posible carta completa.
-    */
-
-    const cartaCompleta =
-        document.querySelector(
-            ".carta-completa"
-        );
-
-
-    if (cartaCompleta) {
-
-        cartaCompleta.classList.add(
-            "activa"
-        );
-
-    }
-
-
-    /*
-        Cambiamos el estado del botón.
-    */
-
-    if (abrirCarta) {
-
-        abrirCarta.classList.add(
-            "activo"
-        );
-
-
-        abrirCarta.setAttribute(
-            "aria-expanded",
-            "true"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   39. CERRAR LA CARTA
-========================================================= */
-
-function cerrarLaCarta() {
-
-    if (!sobre) {
-
-        return;
-
-    }
-
-
-    cartaAbierta = false;
-
-
-    sobre.classList.remove(
-        "abierto"
-    );
-
-
-    sobre.classList.remove(
-        "activo"
-    );
-
-
-    if (papelCarta) {
-
-        papelCarta.classList.remove(
-            "abierto"
-        );
-
-
-        papelCarta.classList.remove(
-            "activo"
-        );
-
-    }
-
-
-    const cartaCompleta =
-        document.querySelector(
-            ".carta-completa"
-        );
-
-
-    if (cartaCompleta) {
-
-        cartaCompleta.classList.remove(
-            "activa"
-        );
-
-
-        cartaCompleta.classList.remove(
-            "abierta"
-        );
-
-
-        cartaCompleta.classList.remove(
-            "mostrar"
-        );
-
-    }
-
-
-    if (abrirCarta) {
-
-        abrirCarta.classList.remove(
-            "activo"
-        );
-
-
-        abrirCarta.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   40. ALTERNAR CARTA
-========================================================= */
-
-function alternarCarta() {
-
-    if (cartaAbierta) {
-
-        cerrarLaCarta();
-
-    } else {
-
-        abrirLaCarta();
-
-    }
-
-}
-
-
-/* =========================================================
-   41. BOTÓN ABRIR CARTA
-========================================================= */
-
-if (abrirCarta) {
-
-    abrirCarta.addEventListener(
-
-        "click",
-
+    musica.addEventListener(
+        "loadeddata",
         () => {
 
-            alternarCarta();
+            console.log(
+                "✅ cancion.mp3 cargada correctamente."
+            );
 
         }
-
     );
 
 }
 
 
-/* =========================================================
-   42. PERMITIR ABRIR EL SOBRE DIRECTAMENTE
-========================================================= */
-
-if (sobre) {
-
-    sobre.addEventListener(
-
-        "click",
-
-        (evento) => {
-
-            /*
-                Si el usuario pulsó directamente
-                el botón, no ejecutamos dos veces
-                la misma acción.
-            */
-
-            if (
-                abrirCarta &&
-                (
-                    evento.target === abrirCarta ||
-                    abrirCarta.contains(
-                        evento.target
-                    )
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            alternarCarta();
-
-        }
-
-    );
-
-}
-
 
 /* =========================================================
-   43. ACCESIBILIDAD DE LA CARTA
+   16. ABRIR CARTA
 ========================================================= */
 
-if (abrirCarta) {
+let cartaAbierta =
+    false;
 
-    abrirCarta.setAttribute(
-        "aria-expanded",
-        "false"
-    );
-
-}
-
-
-/* =========================================================
-   44. ESTADO DE LA SORPRESA
-========================================================= */
-
-let sorpresaAbierta = false;
-
-
-/* =========================================================
-   45. ABRIR SORPRESA
-========================================================= */
-
-function abrirSorpresa() {
-
-    if (!sorpresaOculta) {
-
-        return;
-
-    }
-
-
-    sorpresaAbierta = true;
-
-
-    /*
-        Agregamos varias clases compatibles
-        con nuestro CSS.
-    */
-
-    sorpresaOculta.classList.add(
-        "activa"
-    );
-
-
-    sorpresaOculta.classList.add(
-        "mostrar"
-    );
-
-
-    sorpresaOculta.classList.add(
-        "visible"
-    );
-
-
-    /*
-        Actualizamos el botón.
-    */
-
-    if (btnSorpresa) {
-
-        btnSorpresa.classList.add(
-            "activo"
-        );
-
-
-        btnSorpresa.setAttribute(
-            "aria-expanded",
-            "true"
-        );
-
-    }
-
-
-    /*
-        Creamos algunos corazones
-        para acompañar la sorpresa.
-
-        La función se define más adelante.
-    */
-
-    if (
-        typeof crearExplosionCorazones ===
-        "function"
-    ) {
-
-        crearExplosionCorazones();
-
-    }
-
-}
-
-
-/* =========================================================
-   46. CERRAR SORPRESA
-========================================================= */
-
-function cerrarSorpresa() {
-
-    if (!sorpresaOculta) {
-
-        return;
-
-    }
-
-
-    sorpresaAbierta = false;
-
-
-    sorpresaOculta.classList.remove(
-        "activa"
-    );
-
-
-    sorpresaOculta.classList.remove(
-        "mostrar"
-    );
-
-
-    sorpresaOculta.classList.remove(
-        "visible"
-    );
-
-
-    if (btnSorpresa) {
-
-        btnSorpresa.classList.remove(
-            "activo"
-        );
-
-
-        btnSorpresa.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   47. ALTERNAR SORPRESA
-========================================================= */
-
-function alternarSorpresa() {
-
-    if (sorpresaAbierta) {
-
-        cerrarSorpresa();
-
-    } else {
-
-        abrirSorpresa();
-
-    }
-
-}
-
-
-/* =========================================================
-   48. BOTÓN DE SORPRESA
-========================================================= */
-
-if (btnSorpresa) {
-
-    btnSorpresa.addEventListener(
-
-        "click",
-
-        () => {
-
-            alternarSorpresa();
-
-        }
-
-    );
-
-
-    btnSorpresa.setAttribute(
-        "aria-expanded",
-        "false"
-    );
-
-}
-
-
-/* =========================================================
-   49. COMPATIBILIDAD CON OTRO CONTENEDOR DE SORPRESA
-========================================================= */
-
-const sorpresaMensaje =
-    document.querySelector(
-        ".sorpresa-mensaje"
-    );
-
-
-function sincronizarSorpresaMensaje(
-    mostrar
-) {
-
-    if (!sorpresaMensaje) {
-
-        return;
-
-    }
-
-
-    if (mostrar) {
-
-        sorpresaMensaje.classList.add(
-            "activa"
-        );
-
-
-        sorpresaMensaje.classList.add(
-            "mostrar"
-        );
-
-
-        sorpresaMensaje.classList.add(
-            "visible"
-        );
-
-    } else {
-
-        sorpresaMensaje.classList.remove(
-            "activa"
-        );
-
-
-        sorpresaMensaje.classList.remove(
-            "mostrar"
-        );
-
-
-        sorpresaMensaje.classList.remove(
-            "visible"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   50. SINCRONIZAR LA SORPRESA PRINCIPAL
-========================================================= */
-
-/*
-    Observamos cambios en el contenedor principal
-    para mantener sincronizado cualquier segundo
-    bloque de mensaje.
-*/
 
 if (
-    sorpresaOculta &&
-    sorpresaMensaje
+    abrirCarta &&
+    sobre &&
+    papelCarta
 ) {
 
-    const observadorSorpresa =
-        new MutationObserver(
+    abrirCarta.addEventListener(
+        "click",
+        () => {
 
+            cartaAbierta =
+                !cartaAbierta;
+
+
+            if (cartaAbierta) {
+
+                sobre.classList.add(
+                    "abierto"
+                );
+
+
+                abrirCarta.innerHTML =
+                    "<span>♡</span> Cerrar carta";
+
+
+                setTimeout(
+                    () => {
+
+                        papelCarta.classList.add(
+                            "visible"
+                        );
+
+
+                        crearExplosionCorazones(
+                            window.innerWidth / 2,
+                            window.innerHeight / 2,
+                            10
+                        );
+
+                    },
+                    450
+                );
+
+            } else {
+
+                papelCarta.classList.remove(
+                    "visible"
+                );
+
+
+                sobre.classList.remove(
+                    "abierto"
+                );
+
+
+                abrirCarta.innerHTML =
+                    "<span>♡</span> Abrir carta";
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   17. SORPRESA FINAL
+========================================================= */
+
+let sorpresaVisible =
+    false;
+
+
+if (
+    btnSorpresa &&
+    sorpresaOculta
+) {
+
+    btnSorpresa.addEventListener(
+        "click",
+        () => {
+
+            sorpresaVisible =
+                !sorpresaVisible;
+
+
+            if (sorpresaVisible) {
+
+                sorpresaOculta.classList.add(
+                    "visible"
+                );
+
+
+                btnSorpresa.innerHTML =
+                    "<span>♥</span> Ocultar sorpresa";
+
+
+                const rect =
+                    btnSorpresa.getBoundingClientRect();
+
+
+                crearExplosionCorazones(
+                    rect.left +
+                    rect.width / 2,
+
+                    rect.top +
+                    rect.height / 2,
+
+                    20
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        sorpresaOculta.scrollIntoView(
+                            {
+                                behavior:
+                                    "smooth",
+
+                                block:
+                                    "center"
+                            }
+                        );
+
+                    },
+                    400
+                );
+
+            } else {
+
+                sorpresaOculta.classList.remove(
+                    "visible"
+                );
+
+
+                btnSorpresa.innerHTML =
+                    "<span>♥</span> Descubrir sorpresa";
+
+            }
+
+        }
+    );
+
+}
+
+
+
+/* =========================================================
+   18. CREAR CORAZÓN FLOTANTE
+========================================================= */
+
+function crearCorazonFlotante() {
+
+    if (
+        !CONFIG.corazonesActivos ||
+        !contenedorCorazones
+    ) {
+
+        return;
+
+    }
+
+
+    const corazon =
+        document.createElement(
+            "span"
+        );
+
+
+    corazon.className =
+        "corazon-flotante";
+
+
+    const corazones = [
+        "♥",
+        "♡",
+        "♥"
+    ];
+
+
+    corazon.textContent =
+        corazones[
+            Math.floor(
+                Math.random() *
+                corazones.length
+            )
+        ];
+
+
+    corazon.style.left =
+        `${Math.random() * 100}%`;
+
+
+    corazon.style.fontSize =
+        `${12 + Math.random() * 15}px`;
+
+
+    corazon.style.animationDuration =
+        `${6 + Math.random() * 5}s`;
+
+
+    corazon.style.opacity =
+        `${0.25 + Math.random() * 0.45}`;
+
+
+    contenedorCorazones.appendChild(
+        corazon
+    );
+
+
+    setTimeout(
+        () => {
+
+            corazon.remove();
+
+        },
+        12000
+    );
+
+}
+
+
+
+/* Crear corazones lentamente */
+
+setInterval(
+    crearCorazonFlotante,
+    1400
+);
+
+
+
+/* =========================================================
+   19. EXPLOSIÓN DE CORAZONES
+========================================================= */
+
+function crearExplosionCorazones(
+    x,
+    y,
+    cantidad = 12
+) {
+
+    if (!contenedorCorazones) {
+
+        return;
+
+    }
+
+
+    for (
+        let i = 0;
+        i < cantidad;
+        i++
+    ) {
+
+        const corazon =
+            document.createElement(
+                "span"
+            );
+
+
+        corazon.textContent =
+            Math.random() > 0.5
+                ? "♥"
+                : "♡";
+
+
+        corazon.style.position =
+            "fixed";
+
+        corazon.style.left =
+            `${x}px`;
+
+        corazon.style.top =
+            `${y}px`;
+
+        corazon.style.color =
+            "#e85d75";
+
+        corazon.style.fontSize =
+            `${12 + Math.random() * 15}px`;
+
+        corazon.style.pointerEvents =
+            "none";
+
+        corazon.style.zIndex =
+            "9999";
+
+
+        const movimientoX =
+            (Math.random() - 0.5) *
+            220;
+
+
+        const movimientoY =
+            -50 -
+            Math.random() * 170;
+
+
+        const rotacion =
+            (Math.random() - 0.5) *
+            180;
+
+
+        const animacion =
+            corazon.animate(
+
+                [
+
+                    {
+                        transform:
+                            "translate(0, 0) scale(0.5)",
+
+                        opacity:
+                            1
+                    },
+
+                    {
+                        transform:
+                            `translate(
+                                ${movimientoX}px,
+                                ${movimientoY}px
+                            )
+                            rotate(${rotacion}deg)
+                            scale(1.3)`,
+
+                        opacity:
+                            0
+                    }
+
+                ],
+
+                {
+
+                    duration:
+                        900 +
+                        Math.random() *
+                        700,
+
+                    easing:
+                        "ease-out"
+
+                }
+
+            );
+
+
+        contenedorCorazones.appendChild(
+            corazon
+        );
+
+
+        animacion.onfinish =
             () => {
 
-                const estaVisible =
+                corazon.remove();
 
-                    sorpresaOculta.classList.contains(
-                        "activa"
-                    ) ||
+            };
 
-                    sorpresaOculta.classList.contains(
-                        "mostrar"
-                    ) ||
+    }
 
-                    sorpresaOculta.classList.contains(
-                        "visible"
-                    );
+}
 
 
-                sincronizarSorpresaMensaje(
-                    estaVisible
+
+/* =========================================================
+   20. ANIMACIONES AL HACER SCROLL
+========================================================= */
+
+const elementosAnimados =
+    document.querySelectorAll(
+        `
+        .titulo-seccion,
+        .historia-imagen,
+        .historia-texto,
+        .foto-card,
+        .timeline-card,
+        .razon-card,
+        .carta-contenedor
+        `
+    );
+
+
+elementosAnimados.forEach(
+    (elemento, indice) => {
+
+        elemento.classList.add(
+            "revelar"
+        );
+
+
+        /*
+            Pequeña diferencia de tiempo
+            entre elementos.
+        */
+
+        elemento.style.transitionDelay =
+            `${(indice % 4) * 0.08}s`;
+
+    }
+);
+
+
+
+/* =========================================================
+   21. INTERSECTION OBSERVER
+========================================================= */
+
+if (
+    "IntersectionObserver" in window
+) {
+
+    const observer =
+        new IntersectionObserver(
+
+            (entradas) => {
+
+                entradas.forEach(
+                    (entrada) => {
+
+                        if (
+                            entrada.isIntersecting
+                        ) {
+
+                            entrada.target.classList.add(
+                                "visible"
+                            );
+
+
+                            observer.unobserve(
+                                entrada.target
+                            );
+
+                        }
+
+                    }
                 );
+
+            },
+
+            {
+
+                threshold:
+                    0.12
 
             }
 
         );
 
 
-    observadorSorpresa.observe(
+    elementosAnimados.forEach(
+        (elemento) => {
 
-        sorpresaOculta,
+            observer.observe(
+                elemento
+            );
 
-        {
-            attributes: true,
-
-            attributeFilter: [
-                "class"
-            ]
         }
+    );
 
+} else {
+
+    /*
+        Navegadores antiguos:
+        mostramos todo.
+    */
+
+    elementosAnimados.forEach(
+        (elemento) => {
+
+            elemento.classList.add(
+                "visible"
+            );
+
+        }
     );
 
 }
 
 
+
 /* =========================================================
-   51. ESC PARA CERRAR CARTA O SORPRESA
+   22. CORAZÓN AL HACER DOBLE CLICK
 ========================================================= */
 
 document.addEventListener(
-
-    "keydown",
-
+    "dblclick",
     (evento) => {
 
+        crearExplosionCorazones(
+            evento.clientX,
+            evento.clientY,
+            8
+        );
+
+    }
+);
+
+
+
+/* =========================================================
+   23. AJUSTAR MENÚ AL CAMBIAR TAMAÑO
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
         if (
-            evento.key !==
-            "Escape"
+            window.innerWidth > 850
         ) {
+
+            cerrarMenu();
+
+        }
+
+    }
+);
+
+
+
+/* =========================================================
+   24. COMPROBACIÓN INICIAL DEL AUDIO
+========================================================= */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        console.log(
+            "💗 Página de Daría y Jhonatan cargada."
+        );
+
+
+        if (!musica) {
+
+            console.error(
+                "❌ No existe el elemento #musica."
+            );
 
             return;
 
@@ -2173,264 +1488,329 @@ document.addEventListener(
 
 
         /*
-            Cerramos la sorpresa
-            si está abierta.
+            Mostramos la ruta que el navegador
+            está intentando cargar.
         */
 
-        if (sorpresaAbierta) {
-
-            cerrarSorpresa();
-
-        }
+        console.log(
+            "🎵 Archivo de música:",
+            musica.currentSrc ||
+            "music/cancion.mp3"
+        );
 
 
         /*
-            Cerramos la carta
-            si está abierta.
+            Dejamos el volumen preparado.
         */
 
-        if (cartaAbierta) {
-
-            cerrarLaCarta();
-
-        }
+        musica.volume =
+            CONFIG.volumenMusica;
 
     }
-
 );
-
-
 /* =========================================================
-   FIN PARTE 3
+   25. VISOR DE RECUERDOS
+   DARÍA ❤️ JHONATAN
 ========================================================= */
 
 
 /* =========================================================
-   =========================================================
-   PARTE 5
-   VISOR DE LAS 4 FOTOGRAFÍAS
-   =========================================================
-   ========================================================= */
-
-
-/* =========================================================
-   68. INFORMACIÓN DE LOS RECUERDOS
+   INFORMACIÓN DE LOS 4 RECUERDOS
 ========================================================= */
 
 const recuerdos = [
 
     {
-        imagen:
-            "foto1.jpg.jpeg",
+        etiqueta: "UN RECUERDO ESPECIAL",
 
         titulo:
             "Nuestro comienzo",
 
         descripcion:
-            "Uno de esos recuerdos que siempre tendrá un lugar especial en nuestra historia."
+            "Donde comenzó una historia que todavía seguimos escribiendo.",
+
+        imagen:
+            "foto1.jpg.jpeg"
     },
 
     {
-        imagen:
-            "foto2.jpg.jpeg",
+        etiqueta:
+            "PARA RECORDAR",
 
         titulo:
-            "Un momento especial",
+            "Un día especial",
 
         descripcion:
-            "Un instante sencillo, pero lleno de recuerdos que vale la pena guardar."
+            "Uno de esos días que merece quedarse guardado.",
+
+        imagen:
+            "foto2.jpg.jpeg"
     },
 
     {
-        imagen:
-            "foto3.jpg.jpeg",
+        etiqueta:
+            "PEQUEÑOS MOMENTOS",
 
         titulo:
-            "Juntos",
+            "Una sonrisa para recordar",
 
         descripcion:
-            "Cada fotografía guarda una pequeña parte de todo lo que hemos vivido."
+            "Porque algunas sonrisas dicen mucho sin decir nada.",
+
+        imagen:
+            "foto3.jpg.jpeg"
     },
 
     {
-        imagen:
-            "foto4.jpg.jpeg",
+        etiqueta:
+            "NUESTRA HISTORIA",
 
         titulo:
-            "Nuestra historia",
+            "Nuestro recuerdo favorito",
 
         descripcion:
-            "Un recuerdo más de una historia que todavía tiene mucho por contar."
+            "Un momento que siempre tendrá un lugar especial.",
+
+        imagen:
+            "foto4.jpg.jpeg"
     }
 
 ];
 
 
 /* =========================================================
-   69. ELEMENTOS DEL VISOR
+   ELEMENTOS DEL VISOR
 ========================================================= */
 
-const visor =
+const visorRecuerdos =
     document.getElementById(
-        "visor"
-    ) ||
-
-    document.querySelector(
-        ".visor-fotos"
-    ) ||
-
-    document.querySelector(
-        ".visor-recuerdo"
-    ) ||
-
-    document.querySelector(
-        ".modal-foto"
+        "visor-recuerdos"
     );
 
 
-const imagenVisor =
+const visorFondo =
     document.getElementById(
-        "visor-imagen"
-    );
-
-
-const tituloVisor =
-    document.getElementById(
-        "visor-titulo"
-    );
-
-
-const descripcionVisor =
-    document.getElementById(
-        "visor-descripcion"
+        "visor-fondo"
     );
 
 
 const cerrarVisor =
     document.getElementById(
         "cerrar-visor"
-    ) ||
-
-    document.querySelector(
-        ".visor-cerrar"
-    ) ||
-
-    document.querySelector(
-        ".visor-recuerdo-cerrar"
-    ) ||
-
-    document.querySelector(
-        ".modal-foto-cerrar"
     );
 
 
-const botonAnterior =
+const recuerdoAnterior =
     document.getElementById(
-        "visor-anterior"
-    ) ||
-
-    document.querySelector(
-        ".visor-anterior"
+        "recuerdo-anterior"
     );
 
 
-const botonSiguiente =
+const recuerdoSiguiente =
     document.getElementById(
-        "visor-siguiente"
-    ) ||
+        "recuerdo-siguiente"
+    );
 
+
+const visorContador =
+    document.getElementById(
+        "visor-contador"
+    );
+
+
+const visorEtiqueta =
+    document.getElementById(
+        "visor-etiqueta"
+    );
+
+
+const visorTitulo =
+    document.getElementById(
+        "visor-titulo"
+    );
+
+
+const visorDescripcion =
+    document.getElementById(
+        "visor-descripcion"
+    );
+
+
+const visorImagen =
     document.querySelector(
-        ".visor-siguiente"
+        ".visor-imagen"
+    );
+
+
+const botonesRecuerdo =
+    document.querySelectorAll(
+        ".btn-ver-recuerdo"
     );
 
 
 /* =========================================================
-   70. ESTADO DEL VISOR
+   VARIABLES DEL VISOR
 ========================================================= */
 
 let recuerdoActual = 0;
 
-let visorAbierto = false;
+let ultimoBotonRecuerdo = null;
 
 
 /* =========================================================
-   71. NORMALIZAR ÍNDICE
+   CREAR PLACEHOLDER
 ========================================================= */
 
-function normalizarIndiceRecuerdo(
-    indice
-) {
+function crearPlaceholderVisor() {
 
-    /*
-        Si no existen recuerdos,
-        devolvemos 0.
-    */
-
-    if (
-        recuerdos.length === 0
-    ) {
-
-        return 0;
-
+    if (!visorImagen) {
+        return;
     }
 
 
-    /*
-        Si retrocedemos desde la primera
-        fotografía, vamos a la última.
-    */
+    visorImagen.innerHTML = `
 
-    if (
-        indice < 0
-    ) {
+        <div class="visor-placeholder">
 
-        return (
-            recuerdos.length - 1
-        );
+            <span>
+                ♡
+            </span>
 
-    }
+            <p>
+                Nuestra fotografía
+            </p>
 
+            <small>
+                Aquí aparecerá este recuerdo
+            </small>
 
-    /*
-        Si avanzamos desde la última,
-        regresamos a la primera.
-    */
+        </div>
 
-    if (
-        indice >= recuerdos.length
-    ) {
-
-        return 0;
-
-    }
-
-
-    return indice;
+    `;
 
 }
 
 
 /* =========================================================
-   72. MOSTRAR RECUERDO EN EL VISOR
+   COMPROBAR SI EXISTE UNA FOTO
+========================================================= */
+
+function cargarImagenRecuerdo(
+    ruta,
+    titulo
+) {
+
+    if (!visorImagen) {
+        return;
+    }
+
+
+    /*
+        Primero mostramos el placeholder.
+
+        De esta forma la galería funciona
+        incluso aunque todavía no tengamos
+        las fotografías.
+    */
+
+    crearPlaceholderVisor();
+
+
+    const imagen =
+        new Image();
+
+
+    imagen.alt =
+        titulo;
+
+
+    imagen.onload =
+        () => {
+
+            /*
+                Solamente mostramos la imagen
+                cuando comprobamos que existe.
+            */
+
+            visorImagen.innerHTML = "";
+
+            visorImagen.appendChild(
+                imagen
+            );
+
+        };
+
+
+    imagen.onerror =
+        () => {
+
+            /*
+                Si foto1.jpg, foto2.jpg, etc.
+                todavía no existen, dejamos
+                el placeholder.
+            */
+
+            crearPlaceholderVisor();
+
+        };
+
+
+    imagen.src =
+        ruta;
+
+}
+
+
+/* =========================================================
+   ACTUALIZAR EL RECUERDO MOSTRADO
 ========================================================= */
 
 function mostrarRecuerdo(
     indice
 ) {
 
+    if (
+        !recuerdos.length ||
+        !visorRecuerdos
+    ) {
+
+        return;
+
+    }
+
+
     /*
-        Normalizamos el índice.
+        Si llegamos después del último,
+        regresamos al primero.
     */
+
+    if (
+        indice >= recuerdos.length
+    ) {
+
+        indice = 0;
+
+    }
+
+
+    /*
+        Si retrocedemos desde el primero,
+        vamos al último.
+    */
+
+    if (
+        indice < 0
+    ) {
+
+        indice =
+            recuerdos.length - 1;
+
+    }
+
 
     recuerdoActual =
-        normalizarIndiceRecuerdo(
-            indice
-        );
+        indice;
 
-
-    /*
-        Obtenemos el recuerdo.
-    */
 
     const recuerdo =
         recuerdos[
@@ -2438,178 +1818,138 @@ function mostrarRecuerdo(
         ];
 
 
-    if (!recuerdo) {
+    /* CONTADOR */
 
-        return;
+    if (visorContador) {
+
+        visorContador.textContent =
+            `${recuerdoActual + 1} / ${recuerdos.length}`;
 
     }
 
 
-    /*
-        Cambiamos la imagen.
-    */
+    /* ETIQUETA */
 
-    if (imagenVisor) {
+    if (visorEtiqueta) {
 
-        imagenVisor.src =
-            recuerdo.imagen;
+        visorEtiqueta.textContent =
+            recuerdo.etiqueta;
+
+    }
 
 
-        imagenVisor.alt =
+    /* TÍTULO */
+
+    if (visorTitulo) {
+
+        visorTitulo.textContent =
             recuerdo.titulo;
 
     }
 
 
-    /*
-        Cambiamos el título.
-    */
+    /* DESCRIPCIÓN */
 
-    if (tituloVisor) {
+    if (visorDescripcion) {
 
-        tituloVisor.textContent =
-            recuerdo.titulo;
-
-    }
-
-
-    /*
-        Cambiamos la descripción.
-    */
-
-    if (descripcionVisor) {
-
-        descripcionVisor.textContent =
+        visorDescripcion.textContent =
             recuerdo.descripcion;
 
     }
+
+
+    /* FOTOGRAFÍA */
+
+    cargarImagenRecuerdo(
+        recuerdo.imagen,
+        recuerdo.titulo
+    );
 
 }
 
 
 /* =========================================================
-   73. ABRIR VISOR
+   ABRIR VISOR
 ========================================================= */
 
-function abrirVisor(
-    indice = 0
+function abrirVisorRecuerdo(
+    indice,
+    boton = null
 ) {
 
-    if (!visor) {
-
+    if (!visorRecuerdos) {
         return;
-
     }
 
 
-    /*
-        Mostramos el recuerdo elegido.
-    */
+    ultimoBotonRecuerdo =
+        boton;
+
 
     mostrarRecuerdo(
         indice
     );
 
 
-    visorAbierto = true;
-
-
-    /*
-        Agregamos las clases compatibles
-        con el CSS nuevo.
-    */
-
-    visor.classList.add(
-        "activo"
-    );
-
-
-    visor.classList.add(
-        "abierto"
-    );
-
-
-    visor.classList.add(
+    visorRecuerdos.classList.add(
         "visible"
     );
 
 
-    /*
-        Evitamos que la página de fondo
-        continúe desplazándose.
-    */
-
-    document.body.classList.add(
-        "visor-abierto"
-    );
-
-
-    document.body.classList.add(
-        "sin-scroll"
-    );
-
-
-    /*
-        Accesibilidad.
-    */
-
-    visor.setAttribute(
+    visorRecuerdos.setAttribute(
         "aria-hidden",
         "false"
     );
 
 
+    document.body.classList.add(
+        "visor-abierto"
+    );
+
+
     /*
-        Enviamos el foco al botón cerrar.
+        Después de abrir,
+        enviamos el foco al botón cerrar.
+
+        Esto ayuda en accesibilidad
+        y también en navegación con teclado.
     */
 
-    if (cerrarVisor) {
+    setTimeout(
+        () => {
 
-        setTimeout(
-
-            () => {
+            if (cerrarVisor) {
 
                 cerrarVisor.focus();
 
-            },
+            }
 
-            150
-
-        );
-
-    }
+        },
+        100
+    );
 
 }
 
 
 /* =========================================================
-   74. CERRAR VISOR
+   CERRAR VISOR
 ========================================================= */
 
-function cerrarElVisor() {
+function cerrarVisorRecuerdo() {
 
-    if (!visor) {
-
+    if (!visorRecuerdos) {
         return;
-
     }
 
 
-    visorAbierto = false;
-
-
-    visor.classList.remove(
-        "activo"
-    );
-
-
-    visor.classList.remove(
-        "abierto"
-    );
-
-
-    visor.classList.remove(
+    visorRecuerdos.classList.remove(
         "visible"
+    );
+
+
+    visorRecuerdos.setAttribute(
+        "aria-hidden",
+        "true"
     );
 
 
@@ -2618,219 +1958,91 @@ function cerrarElVisor() {
     );
 
 
-    document.body.classList.remove(
-        "sin-scroll"
-    );
-
-
-    visor.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-}
-
-
-/* =========================================================
-   75. FOTOGRAFÍA ANTERIOR
-========================================================= */
-
-function recuerdoAnterior() {
-
-    mostrarRecuerdo(
-        recuerdoActual - 1
-    );
-
-}
-
-
-/* =========================================================
-   76. FOTOGRAFÍA SIGUIENTE
-========================================================= */
-
-function recuerdoSiguiente() {
-
-    mostrarRecuerdo(
-        recuerdoActual + 1
-    );
-
-}
-
-
-/* =========================================================
-   77. BOTONES / TARJETAS DE LA GALERÍA
-========================================================= */
-
-/*
-    Buscamos diferentes formas posibles
-    de identificar las cuatro fotografías.
-*/
-
-const botonesRecuerdos =
-    document.querySelectorAll(
-
-        [
-            "[data-recuerdo]",
-            ".foto-card",
-            ".btn-ver-foto",
-            ".ver-recuerdo"
-        ].join(",")
-
-    );
-
-
-/* =========================================================
-   78. OBTENER ÍNDICE DE UNA TARJETA
-========================================================= */
-
-function obtenerIndiceRecuerdo(
-    elemento,
-    indiceAutomatico
-) {
-
     /*
-        Primero comprobamos data-recuerdo.
+        Devolvemos el foco al botón
+        que abrió el recuerdo.
     */
 
-    const dataRecuerdo =
-        elemento.getAttribute(
-            "data-recuerdo"
-        );
+    if (ultimoBotonRecuerdo) {
 
-
-    if (
-        dataRecuerdo !== null &&
-        dataRecuerdo !== ""
-    ) {
-
-        const numero =
-            Number(
-                dataRecuerdo
-            );
-
-
-        if (
-            Number.isFinite(
-                numero
-            )
-        ) {
-
-            /*
-                Admitimos tanto:
-                0,1,2,3
-                como:
-                1,2,3,4
-            */
-
-            if (
-                numero >= 1 &&
-                numero <= recuerdos.length
-            ) {
-
-                return numero - 1;
-
-            }
-
-
-            if (
-                numero >= 0 &&
-                numero < recuerdos.length
-            ) {
-
-                return numero;
-
-            }
-
-        }
+        ultimoBotonRecuerdo.focus();
 
     }
 
-
-    /*
-        Comprobamos data-index.
-    */
-
-    const dataIndex =
-        elemento.getAttribute(
-            "data-index"
-        );
-
-
-    if (
-        dataIndex !== null &&
-        dataIndex !== ""
-    ) {
-
-        const numero =
-            Number(
-                dataIndex
-            );
-
-
-        if (
-            Number.isFinite(
-                numero
-            )
-        ) {
-
-            return normalizarIndiceRecuerdo(
-                numero
-            );
-
-        }
-
-    }
-
-
-    /*
-        Si no tiene ningún atributo,
-        usamos el orden de la tarjeta.
-    */
-
-    return normalizarIndiceRecuerdo(
-        indiceAutomatico
-    );
-
 }
 
 
 /* =========================================================
-   79. ACTIVAR TARJETAS DE FOTOS
+   ABRIR AL PRESIONAR "VER RECUERDO"
 ========================================================= */
 
-botonesRecuerdos.forEach(
+botonesRecuerdo.forEach(
 
-    (
-        elemento,
-        indice
-    ) => {
+    (boton) => {
 
-        elemento.addEventListener(
+        boton.addEventListener(
 
             "click",
 
             (evento) => {
 
                 /*
-                    Evitamos interferir con enlaces
-                    externos si existieran.
+                    Evitamos que otros clics
+                    de la tarjeta interfieran.
                 */
 
-                const enlace =
-                    evento.target.closest(
-                        "a"
+                evento.stopPropagation();
+
+
+                const indice =
+                    Number(
+                        boton.dataset.recuerdo
                     );
 
 
+                abrirVisorRecuerdo(
+                    indice,
+                    boton
+                );
+
+            }
+
+        );
+
+    }
+
+);
+
+
+/* =========================================================
+   TAMBIÉN ABRIR AL TOCAR LA TARJETA
+========================================================= */
+
+const tarjetasRecuerdo =
+    document.querySelectorAll(
+        ".recuerdo-card"
+    );
+
+
+tarjetasRecuerdo.forEach(
+
+    (tarjeta) => {
+
+        tarjeta.addEventListener(
+
+            "click",
+
+            (evento) => {
+
+                /*
+                    Si se pulsó directamente
+                    el botón, dejamos que el
+                    evento anterior se encargue.
+                */
+
                 if (
-                    enlace &&
-                    enlace.getAttribute(
-                        "href"
-                    ) &&
-                    !enlace.getAttribute(
-                        "href"
-                    ).startsWith(
-                        "#"
+                    evento.target.closest(
+                        ".btn-ver-recuerdo"
                     )
                 ) {
 
@@ -2839,15 +2051,21 @@ botonesRecuerdos.forEach(
                 }
 
 
-                const indiceRecuerdo =
-                    obtenerIndiceRecuerdo(
-                        elemento,
-                        indice
+                const indice =
+                    Number(
+                        tarjeta.dataset.recuerdo
                     );
 
 
-                abrirVisor(
-                    indiceRecuerdo
+                const boton =
+                    tarjeta.querySelector(
+                        ".btn-ver-recuerdo"
+                    );
+
+
+                abrirVisorRecuerdo(
+                    indice,
+                    boton
                 );
 
             }
@@ -2860,7 +2078,7 @@ botonesRecuerdos.forEach(
 
 
 /* =========================================================
-   80. BOTÓN CERRAR
+   BOTÓN CERRAR
 ========================================================= */
 
 if (cerrarVisor) {
@@ -2869,14 +2087,7 @@ if (cerrarVisor) {
 
         "click",
 
-        (evento) => {
-
-            evento.stopPropagation();
-
-
-            cerrarElVisor();
-
-        }
+        cerrarVisorRecuerdo
 
     );
 
@@ -2884,23 +2095,16 @@ if (cerrarVisor) {
 
 
 /* =========================================================
-   81. BOTÓN ANTERIOR
+   CERRAR AL TOCAR EL FONDO
 ========================================================= */
 
-if (botonAnterior) {
+if (visorFondo) {
 
-    botonAnterior.addEventListener(
+    visorFondo.addEventListener(
 
         "click",
 
-        (evento) => {
-
-            evento.stopPropagation();
-
-
-            recuerdoAnterior();
-
-        }
+        cerrarVisorRecuerdo
 
     );
 
@@ -2908,23 +2112,25 @@ if (botonAnterior) {
 
 
 /* =========================================================
-   82. BOTÓN SIGUIENTE
+   RECUERDO ANTERIOR
 ========================================================= */
 
-if (botonSiguiente) {
+function irRecuerdoAnterior() {
 
-    botonSiguiente.addEventListener(
+    mostrarRecuerdo(
+        recuerdoActual - 1
+    );
+
+}
+
+
+if (recuerdoAnterior) {
+
+    recuerdoAnterior.addEventListener(
 
         "click",
 
-        (evento) => {
-
-            evento.stopPropagation();
-
-
-            recuerdoSiguiente();
-
-        }
+        irRecuerdoAnterior
 
     );
 
@@ -2932,31 +2138,25 @@ if (botonSiguiente) {
 
 
 /* =========================================================
-   83. CERRAR AL PULSAR EL FONDO
+   SIGUIENTE RECUERDO
 ========================================================= */
 
-if (visor) {
+function irRecuerdoSiguiente() {
 
-    visor.addEventListener(
+    mostrarRecuerdo(
+        recuerdoActual + 1
+    );
+
+}
+
+
+if (recuerdoSiguiente) {
+
+    recuerdoSiguiente.addEventListener(
 
         "click",
 
-        (evento) => {
-
-            /*
-                Solo cerramos cuando se pulsa
-                directamente el fondo oscuro.
-            */
-
-            if (
-                evento.target === visor
-            ) {
-
-                cerrarElVisor();
-
-            }
-
-        }
+        irRecuerdoSiguiente
 
     );
 
@@ -2964,7 +2164,7 @@ if (visor) {
 
 
 /* =========================================================
-   84. CONTROLES DEL TECLADO
+   CONTROLES DEL TECLADO
 ========================================================= */
 
 document.addEventListener(
@@ -2973,55 +2173,55 @@ document.addEventListener(
 
     (evento) => {
 
-        if (!visorAbierto) {
+        /*
+            Si el visor no está abierto,
+            no hacemos nada.
+        */
+
+        if (
+            !visorRecuerdos ||
+            !visorRecuerdos.classList.contains(
+                "visible"
+            )
+        ) {
 
             return;
 
         }
 
 
-        /*
-            ESC
-        */
+        /* ESC = CERRAR */
 
         if (
             evento.key ===
             "Escape"
         ) {
 
-            cerrarElVisor();
-
-            return;
+            cerrarVisorRecuerdo();
 
         }
 
 
-        /*
-            FLECHA IZQUIERDA
-        */
+        /* FLECHA IZQUIERDA */
 
         if (
             evento.key ===
             "ArrowLeft"
         ) {
 
-            recuerdoAnterior();
-
-            return;
+            irRecuerdoAnterior();
 
         }
 
 
-        /*
-            FLECHA DERECHA
-        */
+        /* FLECHA DERECHA */
 
         if (
             evento.key ===
             "ArrowRight"
         ) {
 
-            recuerdoSiguiente();
+            irRecuerdoSiguiente();
 
         }
 
@@ -3031,17 +2231,17 @@ document.addEventListener(
 
 
 /* =========================================================
-   85. SOPORTE PARA DESLIZAR EN CELULAR
+   DESLIZAR CON EL DEDO EN CELULAR
 ========================================================= */
 
-let inicioTactilX = null;
+let inicioToqueX = 0;
 
-let inicioTactilY = null;
+let finalToqueX = 0;
 
 
-if (visor) {
+if (visorRecuerdos) {
 
-    visor.addEventListener(
+    visorRecuerdos.addEventListener(
 
         "touchstart",
 
@@ -3056,12 +2256,8 @@ if (visor) {
             }
 
 
-            inicioTactilX =
+            inicioToqueX =
                 evento.touches[0].clientX;
-
-
-            inicioTactilY =
-                evento.touches[0].clientY;
 
         },
 
@@ -3072,15 +2268,13 @@ if (visor) {
     );
 
 
-    visor.addEventListener(
+    visorRecuerdos.addEventListener(
 
         "touchend",
 
         (evento) => {
 
             if (
-                inicioTactilX === null ||
-                inicioTactilY === null ||
                 evento.changedTouches.length !== 1
             ) {
 
@@ -3089,60 +2283,23 @@ if (visor) {
             }
 
 
-            const finalX =
-                evento.changedTouches[0].clientX;
+            finalToqueX =
+                evento.changedTouches[0]
+                    .clientX;
 
 
-            const finalY =
-                evento.changedTouches[0].clientY;
-
-
-            const diferenciaX =
-                finalX -
-                inicioTactilX;
-
-
-            const diferenciaY =
-                finalY -
-                inicioTactilY;
+            const diferencia =
+                finalToqueX -
+                inicioToqueX;
 
 
             /*
-                Reiniciamos los valores.
-            */
-
-            inicioTactilX = null;
-
-            inicioTactilY = null;
-
-
-            /*
-                Ignoramos movimientos pequeños.
+                Exigimos un movimiento mínimo
+                para evitar cambios accidentales.
             */
 
             if (
-                Math.abs(
-                    diferenciaX
-                ) < 50
-            ) {
-
-                return;
-
-            }
-
-
-            /*
-                Evitamos interpretar un movimiento
-                vertical como cambio de fotografía.
-            */
-
-            if (
-                Math.abs(
-                    diferenciaY
-                ) >
-                Math.abs(
-                    diferenciaX
-                )
+                Math.abs(diferencia) < 65
             ) {
 
                 return;
@@ -3152,26 +2309,26 @@ if (visor) {
 
             /*
                 Deslizar hacia la izquierda:
-                siguiente fotografía.
+                siguiente recuerdo.
             */
 
             if (
-                diferenciaX < 0
+                diferencia < 0
             ) {
 
-                recuerdoSiguiente();
+                irRecuerdoSiguiente();
 
             }
 
 
             /*
                 Deslizar hacia la derecha:
-                fotografía anterior.
+                recuerdo anterior.
             */
 
             else {
 
-                recuerdoAnterior();
+                irRecuerdoAnterior();
 
             }
 
@@ -3187,65 +2344,15 @@ if (visor) {
 
 
 /* =========================================================
-   86. PRE-CARGAR LAS 4 FOTOGRAFÍAS
+   COMPROBACIÓN
 ========================================================= */
 
-function precargarRecuerdos() {
-
-    recuerdos.forEach(
-
-        (recuerdo) => {
-
-            const imagen =
-                new Image();
-
-
-            imagen.src =
-                recuerdo.imagen;
-
-        }
-
-    );
-
-}
-
-
-/*
-    Iniciamos la precarga.
-*/
-
-precargarRecuerdos();
-
-
+console.log(
+    "📸 Visor de recuerdos preparado correctamente."
+);
 /* =========================================================
-   87. ESTADO INICIAL DEL VISOR
-========================================================= */
-
-if (visor) {
-
-    visor.setAttribute(
-        "aria-hidden",
-        "true"
-    );
-
-}
-
-
-/* =========================================================
-   FIN PARTE 5
-========================================================= */
-
-
-/* =========================================================
-   =========================================================
-   PARTE 6
-   ANIMACIONES DE NUESTRA HISTORIA
-   =========================================================
-   ========================================================= */
-
-
-/* =========================================================
-   88. SECCIÓN HISTORIA
+   26. ANIMACIONES - NUESTRA HISTORIA
+   DARÍA ❤️ JHONATAN
 ========================================================= */
 
 const seccionHistoria =
@@ -3255,568 +2362,304 @@ const seccionHistoria =
 
 
 /* =========================================================
-   89. ELEMENTOS ANIMADOS DE HISTORIA
+   PREPARAR ELEMENTOS
 ========================================================= */
 
-const elementosHistoria =
-    document.querySelectorAll(
+function prepararAnimacionesHistoria() {
 
-        [
-            "#historia .section-header",
-            "#historia .historia-visual",
-            "#historia .historia-texto",
-            "#historia .historia-marco",
-            "#historia .historia-foto",
-            "#historia .historia-contenido",
-            "#historia .historia-detalle",
-            "#historia .historia-fecha"
-        ].join(",")
-
-    );
+    if (!seccionHistoria) {
+        return;
+    }
 
 
-/* =========================================================
-   90. PREPARAR ELEMENTOS DE HISTORIA
-========================================================= */
+    const historiaVisual =
+        seccionHistoria.querySelector(
+            ".historia-visual"
+        );
 
-function prepararHistoria() {
 
-    elementosHistoria.forEach(
+    const historiaEtiqueta =
+        seccionHistoria.querySelector(
+            ".historia-mini-etiqueta"
+        );
 
-        (
-            elemento,
-            indice
-        ) => {
 
-            /*
-                Agregamos una clase especial
-                para identificar los elementos
-                de esta sección.
-            */
+    const historiaTitulo =
+        seccionHistoria.querySelector(
+            ".historia-texto-mejorado h3"
+        );
 
-            elemento.classList.add(
-                "historia-animada-js"
+
+    const historiaParrafos =
+        seccionHistoria.querySelectorAll(
+            ".historia-texto-mejorado > p"
+        );
+
+
+    const historiaFecha =
+        seccionHistoria.querySelector(
+            ".historia-fecha-grande"
+        );
+
+
+    const historiaRecorrido =
+        seccionHistoria.querySelector(
+            ".historia-recorrido"
+        );
+
+
+    const historiaFrase =
+        seccionHistoria.querySelector(
+            ".historia-frase-final"
+        );
+
+
+    /* FOTO */
+
+    if (historiaVisual) {
+
+        historiaVisual.classList.add(
+            "historia-animar",
+            "historia-animar-izquierda"
+        );
+
+    }
+
+
+    /* ETIQUETA */
+
+    if (historiaEtiqueta) {
+
+        historiaEtiqueta.classList.add(
+            "historia-animar",
+            "historia-animar-derecha",
+            "historia-delay-1"
+        );
+
+    }
+
+
+    /* TÍTULO */
+
+    if (historiaTitulo) {
+
+        historiaTitulo.classList.add(
+            "historia-animar",
+            "historia-animar-derecha",
+            "historia-delay-2"
+        );
+
+    }
+
+
+    /* PÁRRAFOS */
+
+    historiaParrafos.forEach(
+
+        (parrafo, indice) => {
+
+            parrafo.classList.add(
+                "historia-animar",
+                "historia-animar-arriba"
             );
 
 
-            /*
-                Guardamos un pequeño retraso
-                diferente para cada elemento.
-            */
+            if (indice === 0) {
 
-            elemento.style.setProperty(
-                "--historia-delay",
-                `${indice * 90}ms`
-            );
+                parrafo.classList.add(
+                    "historia-delay-2"
+                );
+
+            }
+
+
+            if (indice === 1) {
+
+                parrafo.classList.add(
+                    "historia-delay-3"
+                );
+
+            }
 
         }
 
     );
 
+
+    /* FECHA */
+
+    if (historiaFecha) {
+
+        historiaFecha.classList.add(
+            "historia-animar",
+            "historia-delay-3"
+        );
+
+    }
+
+
+    /* RECORRIDO */
+
+    if (historiaRecorrido) {
+
+        historiaRecorrido.classList.add(
+            "historia-animar",
+            "historia-animar-arriba",
+            "historia-delay-4"
+        );
+
+    }
+
+
+    /* FRASE */
+
+    if (historiaFrase) {
+
+        historiaFrase.classList.add(
+            "historia-animar",
+            "historia-animar-arriba",
+            "historia-delay-5"
+        );
+
+    }
+
 }
 
 
 /* =========================================================
-   91. MOSTRAR ELEMENTO DE HISTORIA
+   ACTIVAR ANIMACIONES
 ========================================================= */
 
-function mostrarElementoHistoria(
-    elemento
-) {
+function iniciarAnimacionesHistoria() {
 
-    if (!elemento) {
+    if (!seccionHistoria) {
+        return;
+    }
+
+
+    const elementosAnimados =
+        seccionHistoria.querySelectorAll(
+            ".historia-animar"
+        );
+
+
+    if (!elementosAnimados.length) {
+        return;
+    }
+
+
+    /*
+        Si el navegador tiene activada
+        la opción de reducir movimiento,
+        mostramos todo directamente.
+    */
+
+    const reducirMovimiento =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+    if (reducirMovimiento) {
+
+        elementosAnimados.forEach(
+
+            (elemento) => {
+
+                elemento.classList.add(
+                    "historia-visible"
+                );
+
+            }
+
+        );
+
 
         return;
 
     }
 
 
-    elemento.classList.add(
-        "historia-visible-js"
-    );
-
-
     /*
-        También mantenemos la clase
-        "visible" para compatibilidad
-        con el CSS general.
+        IntersectionObserver detecta
+        cuándo la sección entra
+        en la pantalla.
     */
 
-    elemento.classList.add(
-        "visible"
-    );
+    const observadorHistoria =
+        new IntersectionObserver(
 
-}
+            (entradas, observador) => {
 
+                entradas.forEach(
 
-/* =========================================================
-   92. OBSERVADOR DE LA HISTORIA
-========================================================= */
+                    (entrada) => {
 
-function iniciarObservadorHistoria() {
+                        if (
+                            !entrada.isIntersecting
+                        ) {
 
-    if (
-        elementosHistoria.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    /*
-        Navegadores modernos.
-    */
-
-    if (
-        "IntersectionObserver" in window
-    ) {
-
-        const observadorHistoria =
-            new IntersectionObserver(
-
-                (entradas) => {
-
-                    entradas.forEach(
-
-                        (entrada) => {
-
-                            if (
-                                !entrada.isIntersecting
-                            ) {
-
-                                return;
-
-                            }
-
-
-                            mostrarElementoHistoria(
-                                entrada.target
-                            );
-
-
-                            observadorHistoria.unobserve(
-                                entrada.target
-                            );
+                            return;
 
                         }
 
-                    );
 
-                },
+                        entrada.target.classList.add(
+                            "historia-visible"
+                        );
 
-                {
 
-                    threshold: 0.12,
+                        /*
+                            La animación ocurre una sola vez.
+                        */
 
-                    rootMargin:
-                        "0px 0px -40px 0px"
+                        observador.unobserve(
+                            entrada.target
+                        );
 
-                }
+                    }
 
-            );
-
-
-        elementosHistoria.forEach(
-
-            (elemento) => {
-
-                observadorHistoria.observe(
-                    elemento
-                );
-
-            }
-
-        );
-
-    }
-
-
-    /*
-        Compatibilidad con navegadores
-        sin IntersectionObserver.
-    */
-
-    else {
-
-        elementosHistoria.forEach(
-
-            (elemento) => {
-
-                mostrarElementoHistoria(
-                    elemento
-                );
-
-            }
-
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   93. ESTILOS DE ANIMACIÓN PARA HISTORIA
-========================================================= */
-
-function crearEstilosHistoria() {
-
-    /*
-        Evitamos duplicar estilos.
-    */
-
-    if (
-        document.getElementById(
-            "estilos-historia-js"
-        )
-    ) {
-
-        return;
-
-    }
-
-
-    const estilo =
-        document.createElement(
-            "style"
-        );
-
-
-    estilo.id =
-        "estilos-historia-js";
-
-
-    estilo.textContent = `
-
-        /* ================================================
-           ANIMACIONES DE NUESTRA HISTORIA
-        ================================================= */
-
-        .historia-animada-js {
-
-            transition:
-
-                opacity
-                0.8s
-                cubic-bezier(
-                    0.22,
-                    1,
-                    0.36,
-                    1
-                ),
-
-                transform
-                0.8s
-                cubic-bezier(
-                    0.22,
-                    1,
-                    0.36,
-                    1
-                );
-
-            transition-delay:
-                var(
-                    --historia-delay,
-                    0ms
-                );
-
-        }
-
-
-        /*
-            La animación solo se aplica
-            mientras JavaScript está activo.
-        */
-
-        .js-animaciones-activas
-        .historia-animada-js {
-
-            opacity: 0;
-
-            transform:
-                translateY(28px);
-
-        }
-
-
-        .js-animaciones-activas
-        .historia-animada-js.historia-visible-js {
-
-            opacity: 1;
-
-            transform:
-                translateY(0);
-
-        }
-
-
-        /*
-            Imagen principal.
-        */
-
-        .js-animaciones-activas
-        #historia
-        .historia-visual.historia-animada-js {
-
-            transform:
-                translateX(-25px)
-                translateY(10px);
-
-        }
-
-
-        .js-animaciones-activas
-        #historia
-        .historia-visual.historia-visible-js {
-
-            transform:
-                translateX(0)
-                translateY(0);
-
-        }
-
-
-        /*
-            Texto.
-        */
-
-        .js-animaciones-activas
-        #historia
-        .historia-texto.historia-animada-js {
-
-            transform:
-                translateX(25px)
-                translateY(10px);
-
-        }
-
-
-        .js-animaciones-activas
-        #historia
-        .historia-texto.historia-visible-js {
-
-            transform:
-                translateX(0)
-                translateY(0);
-
-        }
-
-
-        /*
-            Movimiento reducido.
-        */
-
-        @media
-        (prefers-reduced-motion: reduce) {
-
-            .historia-animada-js {
-
-                opacity:
-                    1 !important;
-
-                transform:
-                    none !important;
-
-                transition:
-                    none !important;
-
-            }
-
-        }
-
-    `;
-
-
-    document.head.appendChild(
-        estilo
-    );
-
-}
-
-
-/* =========================================================
-   94. MARCAR JAVASCRIPT DE ANIMACIONES
-========================================================= */
-
-document.documentElement.classList.add(
-    "js-animaciones-activas"
-);
-
-
-/* =========================================================
-   95. INICIAR ANIMACIONES DE HISTORIA
-========================================================= */
-
-crearEstilosHistoria();
-
-prepararHistoria();
-
-iniciarObservadorHistoria();
-
-
-/* =========================================================
-   96. EFECTO SUAVE EN LA FOTO DE HISTORIA
-========================================================= */
-
-const imagenHistoria =
-    document.querySelector(
-        "#historia img"
-    );
-
-
-if (imagenHistoria) {
-
-    /*
-        Cuando la fotografía termina
-        de cargar, añadimos una clase.
-    */
-
-    if (
-        imagenHistoria.complete
-    ) {
-
-        imagenHistoria.classList.add(
-            "historia-imagen-cargada"
-        );
-
-    } else {
-
-        imagenHistoria.addEventListener(
-
-            "load",
-
-            () => {
-
-                imagenHistoria.classList.add(
-                    "historia-imagen-cargada"
                 );
 
             },
 
             {
-                once: true
+
+                threshold: 0.15,
+
+                rootMargin:
+                    "0px 0px -40px 0px"
+
             }
 
         );
 
-    }
+
+    elementosAnimados.forEach(
+
+        (elemento) => {
+
+            observadorHistoria.observe(
+                elemento
+            );
+
+        }
+
+    );
 
 }
 
 
 /* =========================================================
-   97. BOTÓN HACIA HISTORIA DESDE UN ENLACE INTERNO
+   INICIAR
 ========================================================= */
 
-const enlacesHistoria =
-    document.querySelectorAll(
-        'a[href="#historia"]'
-    );
+prepararAnimacionesHistoria();
 
-
-enlacesHistoria.forEach(
-
-    (enlace) => {
-
-        enlace.addEventListener(
-
-            "click",
-
-            () => {
-
-                /*
-                    Cerramos el menú móvil
-                    si estuviera abierto.
-                */
-
-                cerrarMenu();
-
-            }
-
-        );
-
-    }
-
-);
-
-
+iniciarAnimacionesHistoria();
 /* =========================================================
-   98. ACTUALIZAR AL CAMBIAR EL TAMAÑO
-========================================================= */
-
-let temporizadorResizeHistoria = null;
-
-
-window.addEventListener(
-
-    "resize",
-
-    () => {
-
-        clearTimeout(
-            temporizadorResizeHistoria
-        );
-
-
-        temporizadorResizeHistoria =
-            setTimeout(
-
-                () => {
-
-                    /*
-                        No cambiamos la estructura.
-                        Solamente aseguramos que los
-                        elementos visibles permanezcan
-                        correctamente mostrados.
-                    */
-
-                    elementosHistoria.forEach(
-
-                        (elemento) => {
-
-                            if (
-                                elemento.classList.contains(
-                                    "historia-visible-js"
-                                )
-                            ) {
-
-                                elemento.classList.add(
-                                    "visible"
-                                );
-
-                            }
-
-                        }
-
-                    );
-
-                },
-
-                150
-
-            );
-
-    }
-
-);
-
-
-/* =========================================================
-   FIN PARTE 6
-========================================================= */
-
-
-/* =========================================================
-   =========================================================
-   PARTE 7
-   ANIMACIONES DE MOMENTOS
-   =========================================================
-   ========================================================= */
-
-
-/* =========================================================
-   99. SECCIÓN MOMENTOS
+   27. ANIMACIONES - MOMENTOS ESPECIALES
+   DARÍA ❤️ JHONATAN
 ========================================================= */
 
 const seccionMomentos =
@@ -3825,843 +2668,160 @@ const seccionMomentos =
     );
 
 
-/* =========================================================
-   100. ELEMENTOS DE LA LÍNEA DE TIEMPO
-========================================================= */
+function iniciarAnimacionesMomentos() {
 
-const itemsMomentos =
-    document.querySelectorAll(
-        "#momentos .timeline-item"
-    );
+    if (!seccionMomentos) {
+        return;
+    }
 
 
-const tarjetasMomentos =
-    document.querySelectorAll(
-        "#momentos .timeline-card"
-    );
+    const momentos =
+        seccionMomentos.querySelectorAll(
+            ".timeline-item"
+        );
 
 
-const puntosMomentos =
-    document.querySelectorAll(
-        "#momentos .timeline-punto"
-    );
+    if (!momentos.length) {
+        return;
+    }
 
 
-const lineaMomentos =
-    document.querySelector(
-        "#momentos .timeline-linea"
-    );
+    /* =====================================================
+       RESPETAR REDUCCIÓN DE MOVIMIENTO
+    ====================================================== */
+
+    const reducirMovimiento =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
 
 
-/* =========================================================
-   101. PREPARAR MOMENTOS
-========================================================= */
+    if (reducirMovimiento) {
 
-function prepararMomentos() {
+        momentos.forEach(
 
-    /*
-        Preparamos cada elemento de la
-        línea de tiempo.
+            (momento) => {
 
-        IMPORTANTE:
-        aquí NO modificamos width,
-        display, flex ni position.
-        Eso queda completamente en CSS.
-    */
-
-    itemsMomentos.forEach(
-
-        (
-            item,
-            indice
-        ) => {
-
-            item.classList.add(
-                "momento-animado-js"
-            );
-
-
-            /*
-                Guardamos el índice.
-            */
-
-            item.dataset.momentoIndice =
-                String(
-                    indice
+                momento.classList.add(
+                    "momento-visible"
                 );
 
+            }
 
-            /*
-                Pequeño retraso para que
-                no aparezcan todos juntos.
-            */
+        );
 
-            item.style.setProperty(
-                "--momento-delay",
-                `${indice * 100}ms`
-            );
-
-        }
-
-    );
-
-
-    /*
-        Preparamos las tarjetas.
-    */
-
-    tarjetasMomentos.forEach(
-
-        (
-            tarjeta,
-            indice
-        ) => {
-
-            tarjeta.classList.add(
-                "momento-card-js"
-            );
-
-
-            tarjeta.style.setProperty(
-                "--momento-card-delay",
-                `${indice * 100}ms`
-            );
-
-        }
-
-    );
-
-
-    /*
-        Preparamos los puntos.
-    */
-
-    puntosMomentos.forEach(
-
-        (
-            punto,
-            indice
-        ) => {
-
-            punto.classList.add(
-                "momento-punto-js"
-            );
-
-
-            punto.style.setProperty(
-                "--momento-punto-delay",
-                `${indice * 100 + 180}ms`
-            );
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   102. MOSTRAR UN MOMENTO
-========================================================= */
-
-function mostrarMomento(
-    item
-) {
-
-    if (!item) {
 
         return;
-
     }
 
 
-    /*
-        Activamos el item.
-    */
+    /* =====================================================
+       OBSERVADOR
+    ====================================================== */
 
-    item.classList.add(
-        "momento-visible-js"
-    );
+    const observadorMomentos =
+        new IntersectionObserver(
 
+            (entradas, observador) => {
 
-    item.classList.add(
-        "visible"
-    );
+                entradas.forEach(
 
+                    (entrada) => {
 
-    /*
-        Buscamos su tarjeta.
-    */
+                        if (
+                            !entrada.isIntersecting
+                        ) {
 
-    const tarjeta =
-        item.querySelector(
-            ".timeline-card"
-        );
-
-
-    if (tarjeta) {
-
-        tarjeta.classList.add(
-            "momento-visible-js"
-        );
-
-
-        tarjeta.classList.add(
-            "visible"
-        );
-
-    }
-
-
-    /*
-        Buscamos su punto central.
-    */
-
-    const punto =
-        item.querySelector(
-            ".timeline-punto"
-        );
-
-
-    if (punto) {
-
-        punto.classList.add(
-            "momento-visible-js"
-        );
-
-
-        punto.classList.add(
-            "visible"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   103. OBSERVADOR DE MOMENTOS
-========================================================= */
-
-function iniciarObservadorMomentos() {
-
-    if (
-        itemsMomentos.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    if (
-        "IntersectionObserver" in window
-    ) {
-
-        const observadorMomentos =
-            new IntersectionObserver(
-
-                (entradas) => {
-
-                    entradas.forEach(
-
-                        (entrada) => {
-
-                            if (
-                                !entrada.isIntersecting
-                            ) {
-
-                                return;
-
-                            }
-
-
-                            mostrarMomento(
-                                entrada.target
-                            );
-
-
-                            observadorMomentos.unobserve(
-                                entrada.target
-                            );
-
+                            return;
                         }
 
-                    );
 
-                },
-
-                {
-
-                    threshold: 0.15,
-
-                    rootMargin:
-                        "0px 0px -50px 0px"
-
-                }
-
-            );
+                        const elemento =
+                            entrada.target;
 
 
-        itemsMomentos.forEach(
+                        /*
+                            Obtenemos la posición
+                            de la tarjeta.
+                        */
 
-            (item) => {
-
-                observadorMomentos.observe(
-                    item
-                );
-
-            }
-
-        );
-
-    }
-
-
-    /*
-        Compatibilidad.
-    */
-
-    else {
-
-        itemsMomentos.forEach(
-
-            (item) => {
-
-                mostrarMomento(
-                    item
-                );
-
-            }
-
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   104. ANIMACIÓN DE LA LÍNEA CENTRAL
-========================================================= */
-
-function activarLineaMomentos() {
-
-    if (!lineaMomentos) {
-
-        return;
-
-    }
-
-
-    lineaMomentos.classList.add(
-        "timeline-linea-js"
-    );
-
-
-    /*
-        Si IntersectionObserver está
-        disponible, esperamos hasta que
-        Momentos aparezca en pantalla.
-    */
-
-    if (
-        "IntersectionObserver" in window &&
-        seccionMomentos
-    ) {
-
-        const observadorLinea =
-            new IntersectionObserver(
-
-                (entradas) => {
-
-                    entradas.forEach(
-
-                        (entrada) => {
-
-                            if (
-                                !entrada.isIntersecting
-                            ) {
-
-                                return;
-
-                            }
-
-
-                            lineaMomentos.classList.add(
-                                "timeline-linea-visible-js"
+                        const indice =
+                            Array.from(
+                                momentos
+                            ).indexOf(
+                                elemento
                             );
 
 
-                            observadorLinea.disconnect();
+                        /*
+                            Pequeño retraso progresivo.
+                        */
 
-                        }
+                        setTimeout(
 
-                    );
+                            () => {
 
-                },
-
-                {
-                    threshold: 0.08
-                }
-
-            );
-
-
-        observadorLinea.observe(
-            seccionMomentos
-        );
-
-    }
-
-    else {
-
-        lineaMomentos.classList.add(
-            "timeline-linea-visible-js"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   105. ESTILOS DE ANIMACIÓN
-========================================================= */
-
-function crearEstilosMomentos() {
-
-    /*
-        Evitamos crear los estilos
-        más de una vez.
-    */
-
-    if (
-        document.getElementById(
-            "estilos-momentos-js"
-        )
-    ) {
-
-        return;
-
-    }
-
-
-    const estilo =
-        document.createElement(
-            "style"
-        );
-
-
-    estilo.id =
-        "estilos-momentos-js";
-
-
-    estilo.textContent = `
-
-        /* ================================================
-           MOMENTOS
-        ================================================= */
-
-
-        /*
-            Las animaciones solamente afectan
-            opacity y transform.
-
-            No tocamos:
-            width
-            height
-            flex
-            display
-            position
-        */
-
-
-        .momento-card-js {
-
-            transition:
-
-                opacity
-                0.75s
-                cubic-bezier(
-                    0.22,
-                    1,
-                    0.36,
-                    1
-                ),
-
-                transform
-                0.75s
-                cubic-bezier(
-                    0.22,
-                    1,
-                    0.36,
-                    1
-                ),
-
-                box-shadow
-                0.35s ease;
-
-            transition-delay:
-                var(
-                    --momento-card-delay,
-                    0ms
-                );
-
-        }
-
-
-        /*
-            Estado inicial.
-        */
-
-        .js-animaciones-activas
-        .momento-card-js {
-
-            opacity: 0;
-
-            transform:
-                translateY(25px)
-                scale(0.97);
-
-        }
-
-
-        /*
-            Estado visible.
-        */
-
-        .js-animaciones-activas
-        .momento-card-js.momento-visible-js {
-
-            opacity: 1;
-
-            transform:
-                translateY(0)
-                scale(1);
-
-        }
-
-
-        /*
-            Animación de los puntos.
-        */
-
-        .momento-punto-js {
-
-            transition:
-
-                opacity
-                0.5s ease,
-
-                box-shadow
-                0.5s ease;
-
-            transition-delay:
-                var(
-                    --momento-punto-delay,
-                    0ms
-                );
-
-        }
-
-
-        .js-animaciones-activas
-        .momento-punto-js {
-
-            opacity: 0;
-
-        }
-
-
-        .js-animaciones-activas
-        .momento-punto-js.momento-visible-js {
-
-            opacity: 1;
-
-        }
-
-
-        /*
-            Efecto suave al pasar el mouse
-            por una tarjeta.
-
-            NO usamos transform aquí para
-            evitar interferir con la animación
-            de entrada.
-        */
-
-        @media (hover: hover) {
-
-            #momentos
-            .timeline-card:hover {
-
-                box-shadow:
-                    0 24px 60px
-                    rgba(
-                        139,
-                        75,
-                        88,
-                        0.14
-                    );
-
-            }
-
-        }
-
-
-        /*
-            Movimiento reducido.
-        */
-
-        @media
-        (prefers-reduced-motion: reduce) {
-
-            .momento-card-js,
-            .momento-punto-js {
-
-                opacity:
-                    1 !important;
-
-                transform:
-                    none !important;
-
-                transition:
-                    none !important;
-
-            }
-
-        }
-
-    `;
-
-
-    document.head.appendChild(
-        estilo
-    );
-
-}
-
-
-/* =========================================================
-   106. EFECTO EN LOS PUNTOS
-========================================================= */
-
-puntosMomentos.forEach(
-
-    (punto) => {
-
-        punto.addEventListener(
-
-            "mouseenter",
-
-            () => {
-
-                punto.classList.add(
-                    "punto-activo-js"
-                );
-
-            }
-
-        );
-
-
-        punto.addEventListener(
-
-            "mouseleave",
-
-            () => {
-
-                punto.classList.remove(
-                    "punto-activo-js"
-                );
-
-            }
-
-        );
-
-    }
-
-);
-
-
-/* =========================================================
-   107. ACTIVAR TARJETA AL PASAR POR EL PUNTO
-========================================================= */
-
-puntosMomentos.forEach(
-
-    (
-        punto,
-        indice
-    ) => {
-
-        punto.addEventListener(
-
-            "mouseenter",
-
-            () => {
-
-                const tarjeta =
-                    tarjetasMomentos[
-                        indice
-                    ];
-
-
-                if (tarjeta) {
-
-                    tarjeta.classList.add(
-                        "timeline-card-activa-js"
-                    );
-
-                }
-
-            }
-
-        );
-
-
-        punto.addEventListener(
-
-            "mouseleave",
-
-            () => {
-
-                const tarjeta =
-                    tarjetasMomentos[
-                        indice
-                    ];
-
-
-                if (tarjeta) {
-
-                    tarjeta.classList.remove(
-                        "timeline-card-activa-js"
-                    );
-
-                }
-
-            }
-
-        );
-
-    }
-
-);
-
-
-/* =========================================================
-   108. ACTUALIZACIÓN AL CAMBIAR DE TAMAÑO
-========================================================= */
-
-let temporizadorResizeMomentos =
-    null;
-
-
-window.addEventListener(
-
-    "resize",
-
-    () => {
-
-        clearTimeout(
-            temporizadorResizeMomentos
-        );
-
-
-        temporizadorResizeMomentos =
-            setTimeout(
-
-                () => {
-
-                    /*
-                        No recalculamos anchos.
-
-                        El responsive de Momentos
-                        pertenece exclusivamente
-                        al style.css.
-                    */
-
-                    itemsMomentos.forEach(
-
-                        (item) => {
-
-                            if (
-                                item.classList.contains(
-                                    "momento-visible-js"
-                                )
-                            ) {
-
-                                mostrarMomento(
-                                    item
+                                elemento.classList.add(
+                                    "momento-visible"
                                 );
 
-                            }
+                            },
 
-                        }
+                            indice * 140
 
-                    );
+                        );
 
-                },
 
-                160
+                        /*
+                            La animación solamente
+                            ocurre una vez.
+                        */
 
+                        observador.unobserve(
+                            elemento
+                        );
+
+                    }
+
+                );
+
+            },
+
+            {
+
+                threshold: 0.20,
+
+                rootMargin:
+                    "0px 0px -50px 0px"
+
+            }
+
+        );
+
+
+    momentos.forEach(
+
+        (momento) => {
+
+            observadorMomentos.observe(
+                momento
             );
 
-    }
+        }
 
-);
+    );
+
+}
 
 
 /* =========================================================
-   109. PROTECCIÓN DE LAS TARJETAS
+   INICIAR
 ========================================================= */
 
-/*
-    No aplicamos estilos inline de tamaño.
-
-    Esto es intencional.
-
-    Antes las tarjetas de Momentos quedaron
-    demasiado angostas porque varias reglas
-    estaban compitiendo por sus dimensiones.
-
-    A partir de ahora:
-
-    JavaScript = comportamiento y animaciones.
-
-    CSS = tamaño, posición y responsive.
-*/
-
-
+iniciarAnimacionesMomentos();
 /* =========================================================
-   110. INICIAR MOMENTOS
-========================================================= */
-
-crearEstilosMomentos();
-
-prepararMomentos();
-
-activarLineaMomentos();
-
-iniciarObservadorMomentos();
-
-
-/* =========================================================
-   FIN PARTE 7
-========================================================= */
-
-
-/* =========================================================
-   =========================================================
-   PARTE 8
-   ANIMACIONES DE RAZONES
-   =========================================================
-   ========================================================= */
-
-
-/* =========================================================
-   111. SECCIÓN RAZONES
+   28. ANIMACIONES - RAZONES PARA RECORDAR
+   DARÍA ❤️ JHONATAN
 ========================================================= */
 
 const seccionRazones =
@@ -4670,1071 +2830,274 @@ const seccionRazones =
     );
 
 
-/* =========================================================
-   112. TARJETAS DE RAZONES
-========================================================= */
+function iniciarAnimacionesRazones() {
 
-const razonesCards =
-    document.querySelectorAll(
-        "#razones .razon-card"
-    );
-
-
-/* =========================================================
-   113. PREPARAR TARJETAS
-========================================================= */
-
-function prepararRazones() {
-
-    if (
-        razonesCards.length === 0
-    ) {
-
+    if (!seccionRazones) {
         return;
-
     }
 
 
-    razonesCards.forEach(
-
-        (
-            tarjeta,
-            indice
-        ) => {
-
-            /*
-                Clase que identifica las tarjetas
-                controladas por JavaScript.
-            */
-
-            tarjeta.classList.add(
-                "razon-animada-js"
-            );
+    const tarjetasRazones =
+        seccionRazones.querySelectorAll(
+            ".razon-card"
+        );
 
 
-            /*
-                Guardamos su posición.
-            */
+    if (!tarjetasRazones.length) {
+        return;
+    }
 
-            tarjeta.dataset.razonIndice =
-                String(
-                    indice
+
+    /* =====================================================
+       REDUCCIÓN DE MOVIMIENTO
+    ====================================================== */
+
+    const reducirMovimientoRazones =
+        window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+
+    if (reducirMovimientoRazones) {
+
+        tarjetasRazones.forEach(
+
+            (tarjeta) => {
+
+                tarjeta.classList.add(
+                    "razon-visible"
                 );
 
+            }
 
-            /*
-                Cada tarjeta tendrá un pequeño
-                retraso para crear una entrada
-                progresiva.
-            */
+        );
 
-            tarjeta.style.setProperty(
-                "--razon-delay",
-                `${indice * 90}ms`
-            );
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   114. MOSTRAR UNA RAZÓN
-========================================================= */
-
-function mostrarRazon(
-    tarjeta
-) {
-
-    if (!tarjeta) {
 
         return;
-
     }
 
 
-    tarjeta.classList.add(
-        "razon-visible-js"
-    );
+    /* =====================================================
+       OBSERVADOR
+    ====================================================== */
 
+    const observadorRazones =
+        new IntersectionObserver(
 
-    /*
-        Conservamos también la clase
-        general utilizada anteriormente.
-    */
+            (entradas, observador) => {
 
-    tarjeta.classList.add(
-        "visible"
-    );
+                entradas.forEach(
 
-}
+                    (entrada) => {
 
+                        if (
+                            !entrada.isIntersecting
+                        ) {
 
-/* =========================================================
-   115. OBSERVADOR DE RAZONES
-========================================================= */
-
-function iniciarObservadorRazones() {
-
-    if (
-        razonesCards.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    /*
-        Navegadores modernos.
-    */
-
-    if (
-        "IntersectionObserver" in window
-    ) {
-
-        const observadorRazones =
-            new IntersectionObserver(
-
-                (entradas) => {
-
-                    entradas.forEach(
-
-                        (entrada) => {
-
-                            if (
-                                !entrada.isIntersecting
-                            ) {
-
-                                return;
-
-                            }
-
-
-                            mostrarRazon(
-                                entrada.target
-                            );
-
-
-                            /*
-                                Una vez mostrada,
-                                ya no necesitamos
-                                seguir observándola.
-                            */
-
-                            observadorRazones.unobserve(
-                                entrada.target
-                            );
-
+                            return;
                         }
 
-                    );
 
-                },
+                        const tarjeta =
+                            entrada.target;
 
-                {
 
-                    threshold: 0.15,
+                        const indice =
+                            Array.from(
+                                tarjetasRazones
+                            ).indexOf(
+                                tarjeta
+                            );
 
-                    rootMargin:
-                        "0px 0px -45px 0px"
 
-                }
+                        /*
+                            Las tarjetas aparecen
+                            una detrás de otra.
+                        */
 
-            );
+                        setTimeout(
 
-
-        razonesCards.forEach(
-
-            (tarjeta) => {
-
-                observadorRazones.observe(
-                    tarjeta
-                );
-
-            }
-
-        );
-
-    }
-
-
-    /*
-        Compatibilidad con navegadores
-        antiguos.
-    */
-
-    else {
-
-        razonesCards.forEach(
-
-            (tarjeta) => {
-
-                mostrarRazon(
-                    tarjeta
-                );
-
-            }
-
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   116. ESTILOS DE ANIMACIÓN DE RAZONES
-========================================================= */
-
-function crearEstilosRazones() {
-
-    /*
-        Evitamos duplicar estilos.
-    */
-
-    if (
-        document.getElementById(
-            "estilos-razones-js"
-        )
-    ) {
-
-        return;
-
-    }
-
-
-    const estilo =
-        document.createElement(
-            "style"
-        );
-
-
-    estilo.id =
-        "estilos-razones-js";
-
-
-    estilo.textContent = `
-
-        /* ================================================
-           RAZONES
-        ================================================= */
-
-
-        .razon-animada-js {
-
-            transition:
-
-                opacity
-                0.75s
-                cubic-bezier(
-                    0.22,
-                    1,
-                    0.36,
-                    1
-                ),
-
-                transform
-                0.75s
-                cubic-bezier(
-                    0.22,
-                    1,
-                    0.36,
-                    1
-                ),
-
-                box-shadow
-                0.35s ease,
-
-                border-color
-                0.35s ease;
-
-            transition-delay:
-                var(
-                    --razon-delay,
-                    0ms
-                );
-
-        }
-
-
-        /*
-            Estado inicial.
-        */
-
-        .js-animaciones-activas
-        .razon-animada-js {
-
-            opacity: 0;
-
-            transform:
-                translateY(30px)
-                scale(0.97);
-
-        }
-
-
-        /*
-            Estado visible.
-        */
-
-        .js-animaciones-activas
-        .razon-animada-js.razon-visible-js {
-
-            opacity: 1;
-
-            transform:
-                translateY(0)
-                scale(1);
-
-        }
-
-
-        /*
-            Efecto al pasar el mouse.
-
-            Aquí evitamos utilizar transform
-            para que no compita con otras
-            animaciones del sitio.
-        */
-
-        @media (hover: hover) {
-
-            #razones
-            .razon-card.razon-visible-js:hover {
-
-                box-shadow:
-                    0 24px 55px
-                    rgba(
-                        139,
-                        75,
-                        88,
-                        0.13
-                    );
-
-                border-color:
-                    rgba(
-                        232,
-                        93,
-                        117,
-                        0.30
-                    );
-
-            }
-
-        }
-
-
-        /*
-            Efecto especial para el corazón
-            o icono interior de la tarjeta.
-        */
-
-        #razones
-        .razon-card
-        .razon-icono,
-
-        #razones
-        .razon-card
-        .razon-numero {
-
-            transition:
-
-                transform
-                0.35s
-                cubic-bezier(
-                    0.22,
-                    1,
-                    0.36,
-                    1
-                ),
-
-                opacity
-                0.35s ease;
-
-        }
-
-
-        @media (hover: hover) {
-
-            #razones
-            .razon-card:hover
-            .razon-icono,
-
-            #razones
-            .razon-card:hover
-            .razon-numero {
-
-                transform:
-                    scale(1.08);
-
-            }
-
-        }
-
-
-        /*
-            Movimiento reducido.
-        */
-
-        @media
-        (prefers-reduced-motion: reduce) {
-
-            .razon-animada-js {
-
-                opacity:
-                    1 !important;
-
-                transform:
-                    none !important;
-
-                transition:
-                    none !important;
-
-            }
-
-
-            #razones
-            .razon-card
-            .razon-icono,
-
-            #razones
-            .razon-card
-            .razon-numero {
-
-                transition:
-                    none !important;
-
-            }
-
-        }
-
-    `;
-
-
-    document.head.appendChild(
-        estilo
-    );
-
-}
-
-
-/* =========================================================
-   117. EFECTO DE INTERACCIÓN
-========================================================= */
-
-razonesCards.forEach(
-
-    (tarjeta) => {
-
-        tarjeta.addEventListener(
-
-            "mouseenter",
-
-            () => {
-
-                tarjeta.classList.add(
-                    "razon-activa-js"
-                );
-
-            }
-
-        );
-
-
-        tarjeta.addEventListener(
-
-            "mouseleave",
-
-            () => {
-
-                tarjeta.classList.remove(
-                    "razon-activa-js"
-                );
-
-            }
-
-        );
-
-    }
-
-);
-
-
-/* =========================================================
-   118. EFECTO TÁCTIL PARA CELULAR
-========================================================= */
-
-razonesCards.forEach(
-
-    (tarjeta) => {
-
-        tarjeta.addEventListener(
-
-            "touchstart",
-
-            () => {
-
-                tarjeta.classList.add(
-                    "razon-tocada-js"
-                );
-
-            },
-
-            {
-                passive: true
-            }
-
-        );
-
-
-        tarjeta.addEventListener(
-
-            "touchend",
-
-            () => {
-
-                setTimeout(
-
-                    () => {
-
-                        tarjeta.classList.remove(
-                            "razon-tocada-js"
-                        );
-
-                    },
-
-                    250
-
-                );
-
-            },
-
-            {
-                passive: true
-            }
-
-        );
-
-    }
-
-);
-
-
-/* =========================================================
-   119. MOSTRAR TODAS SI LA SECCIÓN YA ESTÁ VISIBLE
-========================================================= */
-
-function comprobarRazonesIniciales() {
-
-    if (
-        !seccionRazones ||
-        razonesCards.length === 0
-    ) {
-
-        return;
-
-    }
-
-
-    const rect =
-        seccionRazones.getBoundingClientRect();
-
-
-    /*
-        Si al cargar la página la sección
-        ya está dentro de la pantalla,
-        dejamos que el observador actúe.
-
-        Si el navegador no dispone del
-        observador, las mostramos directamente.
-    */
-
-    if (
-        !(
-            "IntersectionObserver" in window
-        ) &&
-        rect.top < window.innerHeight
-    ) {
-
-        razonesCards.forEach(
-
-            (tarjeta) => {
-
-                mostrarRazon(
-                    tarjeta
-                );
-
-            }
-
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   120. PROTECCIÓN AL CAMBIAR TAMAÑO
-========================================================= */
-
-let temporizadorResizeRazones =
-    null;
-
-
-window.addEventListener(
-
-    "resize",
-
-    () => {
-
-        clearTimeout(
-            temporizadorResizeRazones
-        );
-
-
-        temporizadorResizeRazones =
-            setTimeout(
-
-                () => {
-
-                    /*
-                        No cambiamos columnas,
-                        anchos ni alturas.
-
-                        Todo el responsive
-                        permanece en style.css.
-                    */
-
-                    razonesCards.forEach(
-
-                        (tarjeta) => {
-
-                            if (
-                                tarjeta.classList.contains(
-                                    "razon-visible-js"
-                                )
-                            ) {
+                            () => {
 
                                 tarjeta.classList.add(
-                                    "visible"
+                                    "razon-visible"
                                 );
 
-                            }
+                            },
 
-                        }
+                            indice * 110
 
-                    );
+                        );
 
-                },
 
-                160
+                        /*
+                            Solo animamos una vez.
+                        */
 
+                        observador.unobserve(
+                            tarjeta
+                        );
+
+                    }
+
+                );
+
+            },
+
+            {
+
+                threshold: 0.15,
+
+                rootMargin:
+                    "0px 0px -35px 0px"
+
+            }
+
+        );
+
+
+    tarjetasRazones.forEach(
+
+        (tarjeta) => {
+
+            observadorRazones.observe(
+                tarjeta
             );
 
-    }
+        }
 
-);
+    );
+
+}
 
 
 /* =========================================================
-   121. PROTECCIÓN DE ESTRUCTURA
+   INICIAR
 ========================================================= */
 
-/*
-    Igual que hicimos con Momentos:
-
-    JavaScript:
-        - animaciones
-        - interacción
-        - comportamiento
-
-    CSS:
-        - ancho
-        - alto
-        - columnas
-        - responsive
-        - posición
-
-    De esta manera evitamos que las
-    tarjetas se desordenen.
-*/
+iniciarAnimacionesRazones();
 
 
 /* =========================================================
-   122. INICIAR RAZONES
-========================================================= */
-
-crearEstilosRazones();
-
-prepararRazones();
-
-iniciarObservadorRazones();
-
-comprobarRazonesIniciales();
-
-
-/* =========================================================
-   FIN PARTE 8
-========================================================= */
-
-
-/* =========================================================
-   =========================================================
-   PARTE 9
-   PORTADA DE BIENVENIDA
-   =========================================================
-   ========================================================= */
-
-
-/* =========================================================
-   123. ELEMENTOS DE LA PORTADA
+   29. PORTADA DE BIENVENIDA
+   DARÍA ❤️ JHONATAN
 ========================================================= */
 
 const portadaBienvenida =
-    document.getElementById(
-        "portada-bienvenida"
-    );
-
+    document.getElementById("portada-bienvenida");
 
 const btnAbrirPortada =
-    document.getElementById(
-        "btn-abrir-portada"
-    );
+    document.getElementById("btn-abrir-portada");
 
 
 /* =========================================================
-   124. ESTADO DE LA PORTADA
+   PREPARAR PORTADA
 ========================================================= */
 
-let portadaAbierta =
-    Boolean(
-        portadaBienvenida
-    );
-
-
-let portadaEnTransicion =
-    false;
-
-
-/* =========================================================
-   125. PREPARAR PORTADA
-========================================================= */
-
-function prepararPortada() {
-
-    /*
-        Si la portada no existe,
-        no hacemos nada.
-    */
-
-    if (!portadaBienvenida) {
-
-        return;
-
-    }
-
-
-    /*
-        Bloqueamos el desplazamiento
-        de la página mientras la portada
-        está visible.
-    */
+if (portadaBienvenida) {
 
     document.body.classList.add(
         "portada-activa"
     );
 
-
-    /*
-        Accesibilidad.
-    */
-
-    portadaBienvenida.setAttribute(
-        "aria-hidden",
-        "false"
-    );
+}
 
 
-    /*
-        Marcamos el botón como disponible.
-    */
+/* =========================================================
+   ABRIR NUESTRA HISTORIA
+========================================================= */
+
+async function abrirNuestraHistoria() {
+
+    if (
+        !portadaBienvenida ||
+        portadaBienvenida.classList.contains("portada-cerrando")
+    ) {
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       INICIAR MÚSICA
+       El clic del usuario permite reproducir el audio.
+    ===================================================== */
+
+    if (
+        musica &&
+        musica.paused
+    ) {
+
+        await reproducirMusica();
+
+    }
+
+
+    /* =====================================================
+       EXPLOSIÓN SUAVE DE CORAZONES
+    ===================================================== */
 
     if (btnAbrirPortada) {
 
-        btnAbrirPortada.disabled =
-            false;
+        const rect =
+            btnAbrirPortada.getBoundingClientRect();
 
 
-        btnAbrirPortada.setAttribute(
-            "aria-label",
-            "Abrir nuestra historia"
+        crearExplosionCorazones(
+
+            rect.left +
+            rect.width / 2,
+
+            rect.top +
+            rect.height / 2,
+
+            16
+
         );
 
     }
 
-}
 
-
-/* =========================================================
-   126. INICIAR MÚSICA DESDE LA PORTADA
-========================================================= */
-
-function iniciarMusicaDesdePortada() {
-
-    /*
-        Esta función se ejecuta directamente
-        desde el clic del usuario.
-
-        De esta manera el navegador permite
-        iniciar el audio.
-    */
-
-    if (!musica) {
-
-        return;
-
-    }
-
-
-    /*
-        Si ya está reproduciéndose,
-        no hacemos nada.
-    */
-
-    if (!musica.paused) {
-
-        actualizarBotonMusica();
-
-        return;
-
-    }
-
-
-    /*
-        Detenemos cualquier transición
-        anterior de volumen.
-    */
-
-    detenerSubidaVolumen();
-
-
-    /*
-        Comenzamos en silencio para
-        realizar una entrada suave.
-    */
-
-    musica.volume = 0;
-
-
-    /*
-        IMPORTANTE:
-        llamamos play() directamente dentro
-        de la interacción del usuario.
-    */
-
-    const promesaReproduccion =
-        musica.play();
-
-
-    /*
-        Algunos navegadores devuelven
-        una promesa y otros pueden
-        comportarse de manera diferente.
-    */
-
-    if (
-        promesaReproduccion &&
-        typeof promesaReproduccion.then ===
-        "function"
-    ) {
-
-        promesaReproduccion
-
-            .then(
-
-                () => {
-
-                    musicaIniciada =
-                        true;
-
-
-                    subirVolumenSuavemente();
-
-
-                    actualizarBotonMusica();
-
-                }
-
-            )
-
-            .catch(
-
-                (error) => {
-
-                    /*
-                        Si el navegador bloquea
-                        el audio, la página puede
-                        seguir funcionando.
-                    */
-
-                    console.warn(
-                        "No se pudo iniciar la música desde la portada.",
-                        error
-                    );
-
-
-                    musica.volume =
-                        CONFIG.volumenMusica;
-
-
-                    actualizarBotonMusica();
-
-                }
-
-            );
-
-    }
-
-}
-
-
-/* =========================================================
-   127. CERRAR PORTADA
-========================================================= */
-
-function cerrarPortada() {
-
-    /*
-        Evitamos ejecutar el proceso
-        más de una vez.
-    */
-
-    if (
-        !portadaBienvenida ||
-        portadaEnTransicion
-    ) {
-
-        return;
-
-    }
-
-
-    portadaEnTransicion =
-        true;
-
-
-    /*
-        Deshabilitamos temporalmente
-        el botón.
-    */
-
-    if (btnAbrirPortada) {
-
-        btnAbrirPortada.disabled =
-            true;
-
-    }
-
-
-    /*
-        Iniciamos la música.
-    */
-
-    iniciarMusicaDesdePortada();
-
-
-    /*
-        AQUÍ usamos exactamente la misma
-        clase definida en style.css.
-    */
+    /* =====================================================
+       INICIAR TRANSICIÓN DE SALIDA
+    ===================================================== */
 
     portadaBienvenida.classList.add(
-        "portada-saliendo"
+        "portada-cerrando"
     );
 
-
-    /*
-        Permitimos nuevamente el scroll.
-    */
 
     document.body.classList.remove(
         "portada-activa"
     );
 
 
-    /*
-        Esperamos a que termine
-        la transición CSS.
-    */
+    /* =====================================================
+       QUITAR PORTADA DESPUÉS DE LA ANIMACIÓN
+    ===================================================== */
 
-    window.setTimeout(
+    setTimeout(
 
         () => {
 
-            portadaAbierta =
-                false;
-
-
-            portadaEnTransicion =
-                false;
+            portadaBienvenida.style.display =
+                "none";
 
 
             /*
-                Ocultamos la portada.
+                Dejamos la página posicionada
+                desde el inicio.
             */
 
-            portadaBienvenida.setAttribute(
-                "aria-hidden",
-                "true"
-            );
-
-
-            /*
-                La eliminamos del documento
-                para que no interfiera con
-                botones o navegación.
-            */
-
-            portadaBienvenida.remove();
-
-
-            /*
-                Dejamos la página en Inicio.
-            */
-
-            const inicio =
-                document.getElementById(
-                    "inicio"
-                );
-
-
-            if (inicio) {
-
-                inicio.scrollIntoView({
-
-                    behavior:
-                        "smooth",
-
-                    block:
-                        "start"
-
-                });
-
-            }
-
-
-            /*
-                Actualizamos navegación.
-            */
-
-            actualizarNavegacion();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
 
         },
 
-        850
+        1050
 
     );
 
@@ -5742,7 +3105,7 @@ function cerrarPortada() {
 
 
 /* =========================================================
-   128. BOTÓN "ABRIR NUESTRA HISTORIA"
+   EVENTO DEL BOTÓN
 ========================================================= */
 
 if (btnAbrirPortada) {
@@ -5751,11 +3114,7 @@ if (btnAbrirPortada) {
 
         "click",
 
-        () => {
-
-            cerrarPortada();
-
-        }
+        abrirNuestraHistoria
 
     );
 
@@ -5763,17 +3122,8 @@ if (btnAbrirPortada) {
 
 
 /* =========================================================
-   129. TECLA ENTER
+   TECLA ENTER / ESPACIO
 ========================================================= */
-
-/*
-    Como usamos un elemento <button>,
-    Enter ya funciona automáticamente.
-
-    Este bloque solo evita comportamientos
-    inesperados mientras la portada
-    está en transición.
-*/
 
 if (btnAbrirPortada) {
 
@@ -5784,1077 +3134,27 @@ if (btnAbrirPortada) {
         (evento) => {
 
             if (
-                portadaEnTransicion
-            ) {
-
-                evento.preventDefault();
-
-            }
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   130. EVITAR SCROLL CON TECLADO
-========================================================= */
-
-document.addEventListener(
-
-    "keydown",
-
-    (evento) => {
-
-        if (
-            !portadaAbierta ||
-            !portadaBienvenida
-        ) {
-
-            return;
-
-        }
-
-
-        /*
-            Permitimos Tab para
-            accesibilidad.
-        */
-
-        if (
-            evento.key === "Tab"
-        ) {
-
-            return;
-
-        }
-
-
-        /*
-            Permitimos Enter y Espacio
-            cuando el foco está en el botón.
-        */
-
-        if (
-            document.activeElement ===
-            btnAbrirPortada &&
-            (
                 evento.key === "Enter" ||
                 evento.key === " "
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        /*
-            Evitamos que las teclas de
-            navegación muevan la página
-            que está detrás.
-        */
-
-        const teclasBloqueadas = [
-
-            "ArrowUp",
-
-            "ArrowDown",
-
-            "PageUp",
-
-            "PageDown",
-
-            "Home",
-
-            "End",
-
-            " "
-
-        ];
-
-
-        if (
-            teclasBloqueadas.includes(
-                evento.key
-            )
-        ) {
-
-            evento.preventDefault();
-
-        }
-
-    }
-
-);
-
-
-/* =========================================================
-   131. FOCO INICIAL
-========================================================= */
-
-function enfocarBotonPortada() {
-
-    if (
-        !btnAbrirPortada ||
-        !portadaBienvenida
-    ) {
-
-        return;
-
-    }
-
-
-    /*
-        Esperamos un poco para permitir
-        que termine la animación inicial.
-    */
-
-    window.setTimeout(
-
-        () => {
-
-            if (
-                portadaAbierta &&
-                btnAbrirPortada
             ) {
-
-                btnAbrirPortada.focus({
-
-                    preventScroll:
-                        true
-
-                });
-
-            }
-
-        },
-
-        500
-
-    );
-
-}
-
-
-/* =========================================================
-   132. PROTECCIÓN SI NO EXISTE LA PORTADA
-========================================================= */
-
-if (!portadaBienvenida) {
-
-    /*
-        Si por cualquier motivo el HTML
-        no contiene la portada, nos
-        aseguramos de que el sitio
-        siga teniendo scroll.
-    */
-
-    document.body.classList.remove(
-        "portada-activa"
-    );
-
-}
-
-
-/* =========================================================
-   133. INICIAR PORTADA
-========================================================= */
-
-if (portadaBienvenida) {
-
-    prepararPortada();
-
-    enfocarBotonPortada();
-
-}
-
-
-/* =========================================================
-   FIN PARTE 9
-========================================================= */
-
-
-/* =========================================================
-   =========================================================
-   PARTE 10
-   CIERRE Y COMPROBACIONES FINALES
-   =========================================================
-   ========================================================= */
-
-
-/* =========================================================
-   134. ESTADO GENERAL DEL SITIO
-========================================================= */
-
-let sitioInicializado = false;
-
-
-/* =========================================================
-   135. COMPROBAR ELEMENTOS PRINCIPALES
-========================================================= */
-
-function comprobarElementosPrincipales() {
-
-    const comprobaciones = {
-
-        header:
-            Boolean(
-                header
-            ),
-
-        navegacion:
-            navLinks.length > 0,
-
-        musica:
-            Boolean(
-                musica
-            ),
-
-        historia:
-            Boolean(
-                document.getElementById(
-                    "historia"
-                )
-            ),
-
-        fotos:
-            Boolean(
-                document.getElementById(
-                    "fotos"
-                )
-            ),
-
-        momentos:
-            Boolean(
-                document.getElementById(
-                    "momentos"
-                )
-            ),
-
-        razones:
-            Boolean(
-                document.getElementById(
-                    "razones"
-                )
-            ),
-
-        carta:
-            Boolean(
-                document.getElementById(
-                    "carta"
-                )
-            ),
-
-        sorpresa:
-            Boolean(
-                document.getElementById(
-                    "sorpresa"
-                )
-            )
-
-    };
-
-
-    return comprobaciones;
-
-}
-
-
-/* =========================================================
-   136. CORREGIR BLOQUEOS DE SCROLL
-========================================================= */
-
-function comprobarBloqueoScroll() {
-
-    /*
-        PORTADA
-
-        Si la portada todavía existe
-        y sigue abierta, mantenemos
-        bloqueado el scroll.
-    */
-
-    if (
-        portadaBienvenida &&
-        portadaAbierta &&
-        !portadaEnTransicion
-    ) {
-
-        document.body.classList.add(
-            "portada-activa"
-        );
-
-        return;
-
-    }
-
-
-    /*
-        VISOR
-
-        Si el visor está abierto,
-        mantenemos su bloqueo.
-    */
-
-    if (
-        visorAbierto
-    ) {
-
-        document.body.classList.add(
-            "visor-abierto"
-        );
-
-
-        document.body.classList.add(
-            "sin-scroll"
-        );
-
-        return;
-
-    }
-
-
-    /*
-        Si no existe ningún elemento
-        que necesite bloquear la página,
-        eliminamos las clases.
-    */
-
-    document.body.classList.remove(
-        "portada-activa"
-    );
-
-
-    document.body.classList.remove(
-        "visor-abierto"
-    );
-
-
-    document.body.classList.remove(
-        "sin-scroll"
-    );
-
-}
-
-
-/* =========================================================
-   137. COMPROBAR IMÁGENES DE LA GALERÍA
-========================================================= */
-
-function comprobarImagenesGaleria() {
-
-    const imagenes =
-        document.querySelectorAll(
-            "#fotos img"
-        );
-
-
-    imagenes.forEach(
-
-        (imagen) => {
-
-            /*
-                Evitamos arrastrar accidentalmente
-                las fotografías.
-            */
-
-            imagen.setAttribute(
-                "draggable",
-                "false"
-            );
-
-
-            /*
-                Si una imagen falla, dejamos una
-                clase para poder identificarla.
-            */
-
-            imagen.addEventListener(
-
-                "error",
-
-                () => {
-
-                    imagen.classList.add(
-                        "imagen-error"
-                    );
-
-
-                    console.warn(
-                        `No se pudo cargar la imagen: ${imagen.src}`
-                    );
-
-                },
-
-                {
-                    once: true
-                }
-
-            );
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   138. COMPROBAR AUDIO
-========================================================= */
-
-function comprobarAudioFinal() {
-
-    if (!musica) {
-
-        console.warn(
-            "No se encontró el elemento de audio."
-        );
-
-        return;
-
-    }
-
-
-    /*
-        Dejamos activado el loop.
-    */
-
-    musica.loop =
-        true;
-
-
-    /*
-        Protección del volumen.
-    */
-
-    if (
-        musica.volume >
-        CONFIG.volumenMusica
-    ) {
-
-        musica.volume =
-            CONFIG.volumenMusica;
-
-    }
-
-
-    /*
-        Sincronizamos el botón.
-    */
-
-    actualizarBotonMusica();
-
-}
-
-
-/* =========================================================
-   139. CORREGIR HASH DE LA URL
-========================================================= */
-
-function comprobarHashInicial() {
-
-    /*
-        Si la portada está visible,
-        no desplazamos la página todavía.
-    */
-
-    if (
-        portadaBienvenida &&
-        portadaAbierta
-    ) {
-
-        return;
-
-    }
-
-
-    const hash =
-        window.location.hash;
-
-
-    if (
-        !hash ||
-        hash === "#"
-    ) {
-
-        return;
-
-    }
-
-
-    /*
-        Buscamos la sección indicada.
-    */
-
-    const destino =
-        document.querySelector(
-            hash
-        );
-
-
-    if (!destino) {
-
-        return;
-
-    }
-
-
-    /*
-        Esperamos a que el navegador
-        termine de calcular el diseño.
-    */
-
-    window.setTimeout(
-
-        () => {
-
-            destino.scrollIntoView({
-
-                behavior:
-                    "auto",
-
-                block:
-                    "start"
-
-            });
-
-        },
-
-        100
-
-    );
-
-}
-
-
-/* =========================================================
-   140. ACTUALIZAR AL CAMBIAR EL HASH
-========================================================= */
-
-window.addEventListener(
-
-    "hashchange",
-
-    () => {
-
-        /*
-            Si la portada está abierta,
-            no movemos la página que está
-            detrás de ella.
-        */
-
-        if (
-            portadaAbierta
-        ) {
-
-            return;
-
-        }
-
-
-        actualizarNavegacion();
-
-    }
-
-);
-
-
-/* =========================================================
-   141. PROTECCIÓN DE ENLACES INTERNOS
-========================================================= */
-
-const enlacesInternos =
-    document.querySelectorAll(
-        'a[href^="#"]'
-    );
-
-
-enlacesInternos.forEach(
-
-    (enlace) => {
-
-        enlace.addEventListener(
-
-            "click",
-
-            (evento) => {
-
-                const destinoId =
-                    enlace.getAttribute(
-                        "href"
-                    );
-
-
-                if (
-                    !destinoId ||
-                    destinoId === "#"
-                ) {
-
-                    return;
-
-                }
-
-
-                const destino =
-                    document.querySelector(
-                        destinoId
-                    );
-
-
-                if (!destino) {
-
-                    return;
-
-                }
-
-
-                /*
-                    Evitamos el salto brusco
-                    predeterminado.
-                */
 
                 evento.preventDefault();
 
-
-                /*
-                    Cerramos el menú móvil.
-                */
-
-                cerrarMenu();
-
-
-                /*
-                    Desplazamiento suave.
-                */
-
-                destino.scrollIntoView({
-
-                    behavior:
-                        "smooth",
-
-                    block:
-                        "start"
-
-                });
-
-
-                /*
-                    Actualizamos la URL sin
-                    recargar la página.
-                */
-
-                try {
-
-                    history.replaceState(
-                        null,
-                        "",
-                        destinoId
-                    );
-
-                }
-
-                catch (error) {
-
-                    /*
-                        Si el navegador no permite
-                        modificar el historial,
-                        simplemente continuamos.
-                    */
-
-                }
+                abrirNuestraHistoria();
 
             }
 
-        );
-
-    }
-
-);
-
-
-/* =========================================================
-   142. COMPROBAR RESIZE GENERAL
-========================================================= */
-
-let temporizadorResizeGeneral =
-    null;
-
-
-window.addEventListener(
-
-    "resize",
-
-    () => {
-
-        clearTimeout(
-            temporizadorResizeGeneral
-        );
-
-
-        temporizadorResizeGeneral =
-            window.setTimeout(
-
-                () => {
-
-                    /*
-                        Actualizamos navegación.
-                    */
-
-                    actualizarNavegacion();
-
-
-                    /*
-                        Revisamos bloqueos.
-                    */
-
-                    comprobarBloqueoScroll();
-
-
-                    /*
-                        Si pasamos a escritorio,
-                        cerramos el menú móvil.
-                    */
-
-                    if (
-                        window.innerWidth >
-                        850
-                    ) {
-
-                        cerrarMenu();
-
-                    }
-
-                },
-
-                150
-
-            );
-
-    }
-
-);
-
-
-/* =========================================================
-   143. COMPROBAR ORIENTACIÓN
-========================================================= */
-
-window.addEventListener(
-
-    "orientationchange",
-
-    () => {
-
-        window.setTimeout(
-
-            () => {
-
-                actualizarNavegacion();
-
-                comprobarBloqueoScroll();
-
-            },
-
-            250
-
-        );
-
-    }
-
-);
-
-
-/* =========================================================
-   144. PROTECCIÓN PARA LA PORTADA
-========================================================= */
-
-function comprobarPortadaFinal() {
-
-    /*
-        Si no existe portada,
-        aseguramos que no quede
-        bloqueado el sitio.
-    */
-
-    if (!portadaBienvenida) {
-
-        document.body.classList.remove(
-            "portada-activa"
-        );
-
-        return;
-
-    }
-
-
-    /*
-        Si todavía está abierta,
-        mantenemos su estado.
-    */
-
-    if (
-        portadaAbierta
-    ) {
-
-        document.body.classList.add(
-            "portada-activa"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   145. PROTECCIÓN PARA EL VISOR
-========================================================= */
-
-function comprobarVisorFinal() {
-
-    if (!visor) {
-
-        return;
-
-    }
-
-
-    /*
-        Si está cerrado, dejamos
-        aria-hidden en true.
-    */
-
-    if (!visorAbierto) {
-
-        visor.setAttribute(
-            "aria-hidden",
-            "true"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   146. ESTADO DE CARGA DE LA PÁGINA
-========================================================= */
-
-function marcarPaginaCargada() {
-
-    document.documentElement.classList.add(
-        "pagina-cargada"
-    );
-
-
-    document.body.classList.add(
-        "pagina-lista"
-    );
-
-}
-
-
-/* =========================================================
-   147. INICIALIZACIÓN FINAL
-========================================================= */
-
-function inicializarSitio() {
-
-    /*
-        Evitamos ejecutar la inicialización
-        más de una vez.
-    */
-
-    if (
-        sitioInicializado
-    ) {
-
-        return;
-
-    }
-
-
-    sitioInicializado =
-        true;
-
-
-    /*
-        Comprobamos los elementos.
-    */
-
-    const estado =
-        comprobarElementosPrincipales();
-
-
-    /*
-        Las comprobaciones quedan disponibles
-        en consola para detectar rápidamente
-        cualquier elemento faltante.
-    */
-
-    console.log(
-        "Daría ♥ Jhonatan — Estado del sitio:",
-        estado
-    );
-
-
-    /*
-        Imágenes.
-    */
-
-    comprobarImagenesGaleria();
-
-
-    /*
-        Audio.
-    */
-
-    comprobarAudioFinal();
-
-
-    /*
-        Portada.
-    */
-
-    comprobarPortadaFinal();
-
-
-    /*
-        Visor.
-    */
-
-    comprobarVisorFinal();
-
-
-    /*
-        Header.
-    */
-
-    controlarHeader();
-
-
-    /*
-        Navegación.
-    */
-
-    actualizarNavegacion();
-
-
-    /*
-        Bloqueos.
-    */
-
-    comprobarBloqueoScroll();
-
-
-    /*
-        Marcamos la página lista.
-    */
-
-    marcarPaginaCargada();
-
-
-    /*
-        Comprobamos el hash después
-        de terminar la carga inicial.
-    */
-
-    comprobarHashInicial();
-
-}
-
-
-/* =========================================================
-   148. EJECUTAR INICIALIZACIÓN
-========================================================= */
-
-/*
-    Como script.js está colocado al final
-    del index.html, normalmente el DOM ya
-    estará disponible.
-
-    De todos modos dejamos esta protección.
-*/
-
-if (
-    document.readyState ===
-    "loading"
-) {
-
-    document.addEventListener(
-
-        "DOMContentLoaded",
-
-        inicializarSitio,
-
-        {
-            once: true
         }
 
     );
 
 }
 
-else {
-
-    inicializarSitio();
-
-}
-
 
 /* =========================================================
-   149. CUANDO TODOS LOS RECURSOS TERMINEN DE CARGAR
-========================================================= */
-
-window.addEventListener(
-
-    "load",
-
-    () => {
-
-        /*
-            Volvemos a sincronizar solamente
-            los elementos que pueden depender
-            de imágenes, fuentes o audio.
-        */
-
-        controlarHeader();
-
-        actualizarNavegacion();
-
-        comprobarBloqueoScroll();
-
-
-        /*
-            Si no existe la portada,
-            respetamos el hash de la URL.
-        */
-
-        if (
-            !portadaAbierta
-        ) {
-
-            comprobarHashInicial();
-
-        }
-
-    },
-
-    {
-        once: true
-    }
-
-);
-
-
-/* =========================================================
-   150. MENSAJE FINAL DE DESARROLLO
+   COMPROBACIÓN
 ========================================================= */
 
 console.log(
-    "💗 Daría + Jhonatan | 04 · 01 · 2026"
+    "💗 Portada de bienvenida preparada."
 );
-   
