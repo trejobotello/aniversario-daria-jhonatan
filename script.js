@@ -2976,3 +2976,185 @@ function iniciarAnimacionesRazones() {
 ========================================================= */
 
 iniciarAnimacionesRazones();
+
+
+/* =========================================================
+   29. PORTADA DE BIENVENIDA
+   DARÍA ❤️ JHONATAN
+========================================================= */
+
+const portadaBienvenida =
+    document.getElementById("portada-bienvenida");
+
+const btnAbrirPortada =
+    document.getElementById("btn-abrir-portada");
+
+
+/* =========================================================
+   PREPARAR PORTADA
+========================================================= */
+
+if (portadaBienvenida) {
+
+    document.body.classList.add(
+        "portada-activa"
+    );
+
+}
+
+
+/* =========================================================
+   ABRIR NUESTRA HISTORIA
+========================================================= */
+
+async function abrirNuestraHistoria() {
+
+    if (
+        !portadaBienvenida ||
+        portadaBienvenida.classList.contains("portada-cerrando")
+    ) {
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       INICIAR MÚSICA
+       El clic del usuario permite reproducir el audio.
+    ===================================================== */
+
+    if (
+        musica &&
+        musica.paused
+    ) {
+
+        await reproducirMusica();
+
+    }
+
+
+    /* =====================================================
+       EXPLOSIÓN SUAVE DE CORAZONES
+    ===================================================== */
+
+    if (btnAbrirPortada) {
+
+        const rect =
+            btnAbrirPortada.getBoundingClientRect();
+
+
+        crearExplosionCorazones(
+
+            rect.left +
+            rect.width / 2,
+
+            rect.top +
+            rect.height / 2,
+
+            16
+
+        );
+
+    }
+
+
+    /* =====================================================
+       INICIAR TRANSICIÓN DE SALIDA
+    ===================================================== */
+
+    portadaBienvenida.classList.add(
+        "portada-cerrando"
+    );
+
+
+    document.body.classList.remove(
+        "portada-activa"
+    );
+
+
+    /* =====================================================
+       QUITAR PORTADA DESPUÉS DE LA ANIMACIÓN
+    ===================================================== */
+
+    setTimeout(
+
+        () => {
+
+            portadaBienvenida.style.display =
+                "none";
+
+
+            /*
+                Dejamos la página posicionada
+                desde el inicio.
+            */
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        },
+
+        1050
+
+    );
+
+}
+
+
+/* =========================================================
+   EVENTO DEL BOTÓN
+========================================================= */
+
+if (btnAbrirPortada) {
+
+    btnAbrirPortada.addEventListener(
+
+        "click",
+
+        abrirNuestraHistoria
+
+    );
+
+}
+
+
+/* =========================================================
+   TECLA ENTER / ESPACIO
+========================================================= */
+
+if (btnAbrirPortada) {
+
+    btnAbrirPortada.addEventListener(
+
+        "keydown",
+
+        (evento) => {
+
+            if (
+                evento.key === "Enter" ||
+                evento.key === " "
+            ) {
+
+                evento.preventDefault();
+
+                abrirNuestraHistoria();
+
+            }
+
+        }
+
+    );
+
+}
+
+
+/* =========================================================
+   COMPROBACIÓN
+========================================================= */
+
+console.log(
+    "💗 Portada de bienvenida preparada."
+);
