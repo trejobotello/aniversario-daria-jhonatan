@@ -1,0 +1,1713 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Una historia especial de Daría y Jhonatan."
+    >
+
+    <title>Daría ❤️ Jhonatan | Nuestra Historia</title>
+
+    <!-- FUENTES -->
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         FONDO DECORATIVO
+    ====================================================== -->
+
+    <div class="fondo-decorativo">
+
+        <span class="burbuja burbuja-1"></span>
+        <span class="burbuja burbuja-2"></span>
+        <span class="burbuja burbuja-3"></span>
+        <span class="burbuja burbuja-4"></span>
+
+    </div>
+
+
+    <!-- CORAZONES CREADOS CON JAVASCRIPT -->
+
+    <div
+        id="corazones-flotantes"
+        aria-hidden="true"
+    ></div>
+
+
+
+    <!-- =====================================================
+         NAVEGACIÓN
+    ====================================================== -->
+
+    <header id="header">
+
+        <nav class="navbar contenedor">
+
+            <a
+                href="#inicio"
+                class="logo"
+                aria-label="Ir al inicio"
+            >
+                D
+                <span>♥</span>
+                J
+            </a>
+
+
+            <button
+                id="menu-toggle"
+                class="menu-toggle"
+                type="button"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+            >
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </button>
+
+
+            <div
+                id="nav-menu"
+                class="nav-menu"
+            >
+
+                <a href="#inicio" class="nav-link activo">
+                    Inicio
+                </a>
+
+                <a href="#historia" class="nav-link">
+                    Nuestra historia
+                </a>
+
+                <a href="#fotos" class="nav-link">
+                    Fotos
+                </a>
+
+                <a href="#momentos" class="nav-link">
+                    Momentos
+                </a>
+
+                <a href="#razones" class="nav-link">
+                    Razones
+                </a>
+
+                <a href="#carta" class="nav-link">
+                    Carta
+                </a>
+
+                <a href="#sorpresa" class="nav-link">
+                    Sorpresa
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+    ====================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             INICIO
+        ================================================== -->
+
+        <section
+            id="inicio"
+            class="hero"
+        >
+
+            <div class="hero-decoracion">
+
+                <span class="corazon-fondo corazon-fondo-1">
+                    ♥
+                </span>
+
+                <span class="corazon-fondo corazon-fondo-2">
+                    ♥
+                </span>
+
+                <span class="corazon-fondo corazon-fondo-3">
+                    ♥
+                </span>
+
+            </div>
+
+
+            <div class="hero-contenido contenedor">
+
+                <p class="hero-etiqueta">
+                    NUESTRA HISTORIA
+                </p>
+
+
+                <h1 class="hero-nombres">
+
+                    <span>Daría</span>
+
+                    <span class="hero-corazon">
+                        ♥
+                    </span>
+
+                    <span>Jhonatan</span>
+
+                </h1>
+
+
+                <div class="hero-linea"></div>
+
+
+                <p class="hero-fecha">
+
+                    JUNTOS DESDE EL
+
+                    <strong>
+                        04 DE ENERO DE 2026
+                    </strong>
+
+                </p>
+
+
+                <blockquote class="hero-frase">
+
+                    “Hay historias que comienzan por casualidad,
+                    pero se vuelven inolvidables porque dos personas
+                    deciden seguir escribiéndolas juntas.”
+
+                </blockquote>
+
+
+
+                <!-- CONTADOR -->
+
+                <div class="contador-contenedor">
+
+                    <p class="contador-titulo">
+                        Nuestro tiempo juntos
+                    </p>
+
+
+                    <div
+                        id="contador"
+                        class="contador"
+                    >
+
+                        <div class="contador-item">
+
+                            <span id="anios">00</span>
+
+                            <small>Años</small>
+
+                        </div>
+
+
+                        <div class="contador-separador">
+                            :
+                        </div>
+
+
+                        <div class="contador-item">
+
+                            <span id="meses">00</span>
+
+                            <small>Meses</small>
+
+                        </div>
+
+
+                        <div class="contador-separador">
+                            :
+                        </div>
+
+
+                        <div class="contador-item">
+
+                            <span id="dias">00</span>
+
+                            <small>Días</small>
+
+                        </div>
+
+
+                        <div class="contador-separador">
+                            :
+                        </div>
+
+
+                        <div class="contador-item">
+
+                            <span id="horas">00</span>
+
+                            <small>Horas</small>
+
+                        </div>
+
+
+                        <div class="contador-separador contador-extra">
+                            :
+                        </div>
+
+
+                        <div class="contador-item contador-extra">
+
+                            <span id="minutos">00</span>
+
+                            <small>Min</small>
+
+                        </div>
+
+
+                        <div class="contador-separador contador-extra">
+                            :
+                        </div>
+
+
+                        <div class="contador-item contador-extra">
+
+                            <span id="segundos">00</span>
+
+                            <small>Seg</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- BOTONES -->
+
+                <div class="hero-botones">
+
+                    <a
+                        href="#historia"
+                        id="btn-historia"
+                        class="btn btn-principal"
+                    >
+
+                        <span>♡</span>
+
+                        Nuestra historia
+
+                    </a>
+
+
+                    <button
+                        id="btn-musica"
+                        class="btn btn-secundario"
+                        type="button"
+                    >
+
+                        <span id="icono-musica">
+                            ♪
+                        </span>
+
+                        <span id="texto-musica">
+                            Reproducir música
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <a
+                    href="#historia"
+                    class="deslizar"
+                    aria-label="Bajar a nuestra historia"
+                >
+
+                    <span>
+                        Desliza para descubrir
+                    </span>
+
+                    <div class="flecha-abajo">
+                        ↓
+                    </div>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             NUESTRA HISTORIA
+        ================================================== -->
+
+        <section
+            id="historia"
+            class="seccion historia"
+        >
+
+            <div class="contenedor">
+
+
+                <!-- TÍTULO -->
+
+                <div class="titulo-seccion">
+
+                    <span>01</span>
+
+                    <p>
+                        DONDE TODO COMENZÓ
+                    </p>
+
+                    <h2>
+                        Nuestra Historia
+                    </h2>
+
+                    <div class="titulo-corazon">
+                        ♥
+                    </div>
+
+                </div>
+
+
+
+                <!-- CONTENIDO -->
+
+                <div class="historia-grid historia-grid-mejorada">
+
+
+                    <!-- FOTOGRAFÍA -->
+
+                    <div class="historia-visual">
+
+
+                        <span
+                            class="historia-corazon-decorativo historia-corazon-1"
+                            aria-hidden="true"
+                        >
+                            ♡
+                        </span>
+
+
+                        <span
+                            class="historia-corazon-decorativo historia-corazon-2"
+                            aria-hidden="true"
+                        >
+                            ♥
+                        </span>
+
+
+
+                        <div class="historia-marco">
+
+
+                            <!--
+                                AQUÍ COLOCAREMOS LA FOTO
+                                MÁS ADELANTE
+                            -->
+
+                            <div class="historia-foto-placeholder">
+
+                                <span class="historia-placeholder-corazon">
+                                    ♡
+                                </span>
+
+                                <p>
+                                    Nuestro comienzo
+                                </p>
+
+                                <small>
+                                    Aquí irá uno de nuestros
+                                    recuerdos favoritos
+                                </small>
+
+                            </div>
+
+
+
+                            <!-- FECHA SOBRE LA FOTO -->
+
+                            <div class="historia-foto-etiqueta">
+
+                                <span>
+                                    ♥
+                                </span>
+
+                                <div>
+
+                                    <small>
+                                        TODO COMENZÓ
+                                    </small>
+
+                                    <strong>
+                                        04 · 01 · 2026
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <p class="historia-pie-foto">
+
+                            El inicio de una historia
+                            que todavía continúa.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- TEXTO -->
+
+                    <div class="historia-texto historia-texto-mejorado">
+
+
+                        <span class="historia-mini-etiqueta">
+                            NUESTRA PRIMERA PÁGINA
+                        </span>
+
+
+                        <h3>
+
+                            Todo comenzó un
+
+                            <em>
+                                04 de enero...
+                            </em>
+
+                        </h3>
+
+
+                        <p>
+
+                            Una fecha que con el tiempo se convirtió
+                            en el comienzo de muchos recuerdos,
+                            conversaciones, sonrisas y momentos
+                            especiales.
+
+                        </p>
+
+
+                        <p>
+
+                            Desde aquel día, cada pequeño momento
+                            comenzó a formar parte de una historia
+                            que continúa creciendo y dejando
+                            recuerdos que vale la pena guardar.
+
+                        </p>
+
+
+
+                        <!-- FECHA GRANDE -->
+
+                        <div class="historia-fecha-grande">
+
+                            <div class="historia-fecha-numero">
+                                04
+                            </div>
+
+
+                            <div class="historia-fecha-datos">
+
+                                <span>
+                                    ENERO
+                                </span>
+
+                                <strong>
+                                    2026
+                                </strong>
+
+                            </div>
+
+
+                            <div class="historia-fecha-corazon">
+                                ♥
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- RECORRIDO -->
+
+                        <div class="historia-recorrido">
+
+
+                            <div class="historia-recorrido-item">
+
+                                <span class="historia-recorrido-punto">
+                                    ♥
+                                </span>
+
+                                <div>
+
+                                    <small>
+                                        04 ENE 2026
+                                    </small>
+
+                                    <strong>
+                                        El comienzo
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <span
+                                class="historia-recorrido-linea"
+                                aria-hidden="true"
+                            ></span>
+
+
+
+                            <div class="historia-recorrido-item">
+
+                                <span class="historia-recorrido-punto">
+                                    ♡
+                                </span>
+
+                                <div>
+
+                                    <small>
+                                        DURANTE EL CAMINO
+                                    </small>
+
+                                    <strong>
+                                        Muchos recuerdos
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <span
+                                class="historia-recorrido-linea"
+                                aria-hidden="true"
+                            ></span>
+
+
+
+                            <div class="historia-recorrido-item">
+
+                                <span class="historia-recorrido-punto">
+                                    ♥
+                                </span>
+
+                                <div>
+
+                                    <small>
+                                        HOY
+                                    </small>
+
+                                    <strong>
+                                        Seguimos escribiendo
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- FRASE -->
+
+                        <blockquote class="historia-frase-final">
+
+                            <span>
+                                “
+                            </span>
+
+                            Algunas fechas se convierten
+                            en recuerdos, y algunos recuerdos
+                            terminan convirtiéndose en
+                            parte de nuestra historia.
+
+                        </blockquote>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             FOTOS
+        ================================================== -->
+
+        <section
+            id="fotos"
+            class="seccion fotos"
+        >
+
+            <div class="contenedor">
+
+                <div class="titulo-seccion">
+
+                    <span>02</span>
+
+                    <p>
+                        RECUERDOS
+                    </p>
+
+                    <h2>
+                        Nuestros Momentos
+                    </h2>
+
+                    <div class="titulo-corazon">
+                        ♥
+                    </div>
+
+                </div>
+
+
+                <p class="seccion-introduccion">
+
+                    Hay momentos que duran solo unos segundos,
+                    pero terminan convirtiéndose en recuerdos
+                    que queremos guardar para siempre.
+
+                </p>
+
+
+
+                <div class="galeria">
+
+
+                    <!-- FOTO 01 -->
+
+                    <article
+                        class="foto-card foto-grande recuerdo-card"
+                        data-recuerdo="0"
+                    >
+
+                        <div class="foto-placeholder">
+
+                            <span>♡</span>
+
+                            <p>
+                                Nuestra foto
+                            </p>
+
+                            <small>
+                                Próximamente
+                            </small>
+
+                        </div>
+
+
+                        <div class="foto-overlay">
+
+                            <span class="foto-numero">
+                                01
+                            </span>
+
+                            <div class="foto-info">
+
+                                <small>
+                                    UN RECUERDO ESPECIAL
+                                </small>
+
+                                <h3>
+                                    Nuestro comienzo
+                                </h3>
+
+                                <p>
+                                    Donde comenzó una historia
+                                    que todavía seguimos escribiendo.
+                                </p>
+
+                                <button
+                                    class="btn-ver-recuerdo"
+                                    type="button"
+                                    data-recuerdo="0"
+                                >
+
+                                    <span>♡</span>
+
+                                    Ver recuerdo
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FOTO 02 -->
+
+                    <article
+                        class="foto-card recuerdo-card"
+                        data-recuerdo="1"
+                    >
+
+                        <div class="foto-placeholder">
+
+                            <span>♡</span>
+
+                            <p>
+                                Nuestra foto
+                            </p>
+
+                            <small>
+                                Próximamente
+                            </small>
+
+                        </div>
+
+
+                        <div class="foto-overlay">
+
+                            <span class="foto-numero">
+                                02
+                            </span>
+
+                            <div class="foto-info">
+
+                                <small>
+                                    PARA RECORDAR
+                                </small>
+
+                                <h3>
+                                    Un día especial
+                                </h3>
+
+                                <p>
+                                    Uno de esos días que merece
+                                    quedarse guardado.
+                                </p>
+
+                                <button
+                                    class="btn-ver-recuerdo"
+                                    type="button"
+                                    data-recuerdo="1"
+                                >
+
+                                    <span>♡</span>
+
+                                    Ver recuerdo
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FOTO 03 -->
+
+                    <article
+                        class="foto-card recuerdo-card"
+                        data-recuerdo="2"
+                    >
+
+                        <div class="foto-placeholder">
+
+                            <span>♡</span>
+
+                            <p>
+                                Nuestra foto
+                            </p>
+
+                            <small>
+                                Próximamente
+                            </small>
+
+                        </div>
+
+
+                        <div class="foto-overlay">
+
+                            <span class="foto-numero">
+                                03
+                            </span>
+
+                            <div class="foto-info">
+
+                                <small>
+                                    PEQUEÑOS MOMENTOS
+                                </small>
+
+                                <h3>
+                                    Una sonrisa para recordar
+                                </h3>
+
+                                <p>
+                                    Porque algunas sonrisas
+                                    dicen mucho sin decir nada.
+                                </p>
+
+                                <button
+                                    class="btn-ver-recuerdo"
+                                    type="button"
+                                    data-recuerdo="2"
+                                >
+
+                                    <span>♡</span>
+
+                                    Ver recuerdo
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <!-- FOTO 04 -->
+
+                    <article
+                        class="foto-card foto-horizontal recuerdo-card"
+                        data-recuerdo="3"
+                    >
+
+                        <div class="foto-placeholder">
+
+                            <span>♡</span>
+
+                            <p>
+                                Nuestra foto
+                            </p>
+
+                            <small>
+                                Próximamente
+                            </small>
+
+                        </div>
+
+
+                        <div class="foto-overlay">
+
+                            <span class="foto-numero">
+                                04
+                            </span>
+
+                            <div class="foto-info">
+
+                                <small>
+                                    NUESTRA HISTORIA
+                                </small>
+
+                                <h3>
+                                    Nuestro recuerdo favorito
+                                </h3>
+
+                                <p>
+                                    Un momento que siempre
+                                    tendrá un lugar especial.
+                                </p>
+
+                                <button
+                                    class="btn-ver-recuerdo"
+                                    type="button"
+                                    data-recuerdo="3"
+                                >
+
+                                    <span>♡</span>
+
+                                    Ver recuerdo
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             MOMENTOS
+        ================================================== -->
+
+        <section
+            id="momentos"
+            class="seccion momentos"
+        >
+
+            <div class="contenedor">
+
+                <div class="titulo-seccion">
+
+                    <span>03</span>
+
+                    <p>
+                        NUESTRO CAMINO
+                    </p>
+
+                    <h2>
+                        Momentos Especiales
+                    </h2>
+
+                    <div class="titulo-corazon">
+                        ♥
+                    </div>
+
+                </div>
+
+
+
+                <div class="timeline">
+
+                    <div class="timeline-linea"></div>
+
+
+
+                    <article class="timeline-item">
+
+                        <div class="timeline-punto">
+                            ♥
+                        </div>
+
+                        <div class="timeline-card">
+
+                            <span class="timeline-fecha">
+                                04 ENE 2026
+                            </span>
+
+                            <h3>
+                                El comienzo
+                            </h3>
+
+                            <p>
+                                El día en que comenzó una nueva
+                                historia para Daría y Jhonatan.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="timeline-item">
+
+                        <div class="timeline-punto">
+                            ♡
+                        </div>
+
+                        <div class="timeline-card">
+
+                            <span class="timeline-fecha">
+                                UN RECUERDO
+                            </span>
+
+                            <h3>
+                                Un momento especial
+                            </h3>
+
+                            <p>
+                                Aquí podremos agregar después
+                                una fecha y un recuerdo importante.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+
+                    <article class="timeline-item">
+
+                        <div class="timeline-punto">
+                            ♥
+                        </div>
+
+                        <div class="timeline-card">
+
+                            <span class="timeline-fecha">
+                                9 MESES
+                            </span>
+
+                            <h3>
+                                Seguimos escribiendo
+                            </h3>
+
+                            <p>
+                                Nueve meses de recuerdos y una
+                                historia que todavía tiene mucho
+                                por contar.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RAZONES
+        ================================================== -->
+
+        <section
+            id="razones"
+            class="seccion razones"
+        >
+
+            <div class="contenedor">
+
+                <div class="titulo-seccion">
+
+                    <span>04</span>
+
+                    <p>
+                        PEQUEÑAS COSAS
+                    </p>
+
+                    <h2>
+                        Razones para Recordar
+                    </h2>
+
+                    <div class="titulo-corazon">
+                        ♥
+                    </div>
+
+                </div>
+
+
+
+                <div class="razones-grid">
+
+
+                    <article class="razon-card">
+
+                        <span class="razon-icono">
+                            ♡
+                        </span>
+
+                        <h3>
+                            Las sonrisas
+                        </h3>
+
+                        <p>
+                            Porque algunos momentos pueden
+                            cambiar por completo un día.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="razon-card">
+
+                        <span class="razon-icono">
+                            ✦
+                        </span>
+
+                        <h3>
+                            Las conversaciones
+                        </h3>
+
+                        <p>
+                            Esas conversaciones que terminan
+                            convirtiéndose en recuerdos.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="razon-card">
+
+                        <span class="razon-icono">
+                            ♡
+                        </span>
+
+                        <h3>
+                            Los detalles
+                        </h3>
+
+                        <p>
+                            Porque muchas veces las cosas más
+                            pequeñas son las más especiales.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="razon-card">
+
+                        <span class="razon-icono">
+                            ✧
+                        </span>
+
+                        <h3>
+                            Los recuerdos
+                        </h3>
+
+                        <p>
+                            Cada recuerdo forma una pequeña
+                            parte de esta historia.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="razon-card">
+
+                        <span class="razon-icono">
+                            ♡
+                        </span>
+
+                        <h3>
+                            La compañía
+                        </h3>
+
+                        <p>
+                            Porque compartir el camino también
+                            hace especiales los días normales.
+                        </p>
+
+                    </article>
+
+
+
+                    <article class="razon-card">
+
+                        <span class="razon-icono">
+                            ∞
+                        </span>
+
+                        <h3>
+                            Lo que falta
+                        </h3>
+
+                        <p>
+                            Porque todavía quedan muchos
+                            momentos nuevos por descubrir.
+                        </p>
+
+                    </article>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             CARTA
+        ================================================== -->
+
+        <section
+            id="carta"
+            class="seccion carta-seccion"
+        >
+
+            <div class="contenedor">
+
+                <div class="titulo-seccion">
+
+                    <span>05</span>
+
+                    <p>
+                        UNAS PALABRAS
+                    </p>
+
+                    <h2>
+                        Una Carta Especial
+                    </h2>
+
+                    <div class="titulo-corazon">
+                        ♥
+                    </div>
+
+                </div>
+
+
+
+                <div class="carta-contenedor">
+
+                    <div
+                        id="sobre"
+                        class="sobre"
+                    >
+
+                        <div class="sobre-parte-trasera"></div>
+
+
+                        <div class="sobre-carta">
+
+                            <span>D</span>
+
+                            <div class="sello">
+                                ♥
+                            </div>
+
+                            <span>J</span>
+
+                        </div>
+
+
+                        <div class="sobre-frente"></div>
+
+                    </div>
+
+
+
+                    <button
+                        id="abrir-carta"
+                        class="btn btn-principal"
+                        type="button"
+                    >
+
+                        <span>♡</span>
+
+                        Abrir carta
+
+                    </button>
+
+
+
+                    <article
+                        id="papel-carta"
+                        class="papel-carta"
+                    >
+
+                        <span class="carta-corazon">
+                            ♥
+                        </span>
+
+
+                        <p class="carta-saludo">
+                            Daría y Jhonatan:
+                        </p>
+
+
+                        <p>
+                            Han pasado nueve meses desde que
+                            comenzó esta historia.
+                        </p>
+
+
+                        <p>
+                            En ese tiempo quedaron momentos,
+                            conversaciones, risas y pequeños
+                            recuerdos que ahora forman parte
+                            de algo especial.
+                        </p>
+
+
+                        <p>
+                            Que esta página sea una pequeña
+                            forma de guardar algunos de esos
+                            momentos y recordar todo lo vivido
+                            desde aquel 04 de enero.
+                        </p>
+
+
+                        <p>
+                            Y que todavía queden muchas páginas
+                            nuevas por escribir.
+                        </p>
+
+
+                        <div class="carta-firma">
+
+                            <span>
+                                Daría
+                            </span>
+
+                            <b>
+                                ♥
+                            </b>
+
+                            <span>
+                                Jhonatan
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             SORPRESA
+        ================================================== -->
+
+        <section
+            id="sorpresa"
+            class="seccion sorpresa"
+        >
+
+            <div class="contenedor sorpresa-contenido">
+
+                <div class="titulo-seccion titulo-claro">
+
+                    <span>06</span>
+
+                    <p>
+                        ANTES DE TERMINAR
+                    </p>
+
+                    <h2>
+                        Una Última Sorpresa
+                    </h2>
+
+                    <div class="titulo-corazon">
+                        ♥
+                    </div>
+
+                </div>
+
+
+
+                <p class="sorpresa-texto">
+
+                    Hay algo más esperando al final
+                    de esta historia.
+
+                </p>
+
+
+
+                <button
+                    id="btn-sorpresa"
+                    class="btn btn-sorpresa"
+                    type="button"
+                >
+
+                    <span>♥</span>
+
+                    Descubrir sorpresa
+
+                </button>
+
+
+
+                <div
+                    id="sorpresa-oculta"
+                    class="sorpresa-oculta"
+                >
+
+                    <span class="sorpresa-corazon">
+                        ♥
+                    </span>
+
+
+                    <p>
+
+                        Nueve meses son solo una parte
+                        de nuestra historia.
+
+                    </p>
+
+
+                    <h3>
+
+                        Daría
+
+                        <span>
+                            ♥
+                        </span>
+
+                        Jhonatan
+
+                    </h3>
+
+
+                    <div class="sorpresa-fecha">
+                        04 · 10 · 2026
+                    </div>
+
+
+                    <p class="sorpresa-frase">
+
+                        Gracias por cada recuerdo,
+                        cada sonrisa y cada momento compartido.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         VISOR DE RECUERDOS
+    ====================================================== -->
+
+    <div
+        id="visor-recuerdos"
+        class="visor-recuerdos"
+        aria-hidden="true"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Visor de nuestros recuerdos"
+    >
+
+        <div
+            id="visor-fondo"
+            class="visor-fondo"
+        ></div>
+
+
+
+        <button
+            id="cerrar-visor"
+            class="cerrar-visor"
+            type="button"
+            aria-label="Cerrar recuerdo"
+        >
+            ×
+        </button>
+
+
+
+        <button
+            id="recuerdo-anterior"
+            class="visor-flecha visor-anterior"
+            type="button"
+            aria-label="Recuerdo anterior"
+        >
+            ‹
+        </button>
+
+
+
+        <div class="visor-contenido">
+
+            <div class="visor-imagen">
+
+                <div class="visor-placeholder">
+
+                    <span>
+                        ♡
+                    </span>
+
+                    <p>
+                        Nuestra fotografía
+                    </p>
+
+                    <small>
+                        Aquí aparecerá este recuerdo
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="visor-informacion">
+
+                <span
+                    id="visor-contador"
+                    class="visor-contador"
+                >
+                    1 / 4
+                </span>
+
+
+                <p
+                    id="visor-etiqueta"
+                    class="visor-etiqueta"
+                >
+                    UN RECUERDO ESPECIAL
+                </p>
+
+
+                <h2 id="visor-titulo">
+                    Nuestro comienzo
+                </h2>
+
+
+                <p id="visor-descripcion">
+
+                    Donde comenzó una historia
+                    que todavía seguimos escribiendo.
+
+                </p>
+
+
+                <div class="visor-firma">
+
+                    <span>
+                        Daría
+                    </span>
+
+                    <b>
+                        ♥
+                    </b>
+
+                    <span>
+                        Jhonatan
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <button
+            id="recuerdo-siguiente"
+            class="visor-flecha visor-siguiente"
+            type="button"
+            aria-label="Siguiente recuerdo"
+        >
+            ›
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="contenedor">
+
+            <div class="footer-corazon">
+                ♥
+            </div>
+
+
+            <p>
+
+                Daría
+
+                <span>
+                    ♥
+                </span>
+
+                Jhonatan
+
+            </p>
+
+
+            <small>
+                Nuestra historia · 2026
+            </small>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         MÚSICA
+    ====================================================== -->
+
+    <audio
+        id="musica"
+        preload="auto"
+        loop
+    >
+
+        <source
+            src="./music/cancion.mp3.mp3"
+            type="audio/mpeg"
+        >
+
+        Tu navegador no puede reproducir este audio.
+
+    </audio>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
